@@ -5,9 +5,10 @@ import pandas as pd
 def lire_fichier_contraintes(file_name):
     sommets, duree, predecesseurs = [], [], []
 
-    with open('graphes/test.txt', 'r') as f:
+    with open(file_name, 'r') as f:
         for ligne in f:
             ligne = ligne.replace("\n", "")
+            ligne = ligne.strip()
             ligne = ligne.split(" ")
             sommets.append(int(ligne[0]))
             duree.append(int(ligne[1]))
@@ -66,24 +67,65 @@ def creer_matrice_valeurs(sommets, successeurs, duree):
     print("\nII. Création de la matrice des valeurs \n")
 
     # On initialise la matrice à -1 en ajoutant 2 sommets pour alpha et omega
-    matrice_adjacence = [[-1 for i in range(len(sommets))] for j in range(len(sommets))]
+    matrice_valeurs = [[-1 for i in range(len(sommets))] for j in range(len(sommets))]
 
     for i in range(len(sommets)):
         for j in range(len(sommets)):
-            matrice_adjacence[i][j] = duree[i] if j in successeurs[i] else -1
+            matrice_valeurs[i][j] = duree[i] if j in successeurs[i] else -1
 
-    def afficher_matrice(matrice):
+    return matrice_valeurs
+
+def afficher_matrice(matrice):
             print(pd.DataFrame(matrice))
 
-    afficher_matrice(matrice_adjacence)
-
-    return matrice_adjacence
-
 # ETAPE 3 : Vérification des propriétés pour valider le graphe d'ordonnancement
-""" 
 
-"""
+def verifier_arcs_negatifs(matrice):
+    #Vérifier s'il y a des arcs à valeurs négatives
+    for i in range(len(matrice)):
+        for j in range(len(matrice)):
+            if matrice[i][j] < -1: # S'il y a une valeur inférieure à -1
+                return True # Il y a un arc à valeur négative
+    return False
 
+def verifier_circuit(matrice):
+    copie_matrice = pd.DataFrame(matrice)
+    
+    #Si une colonne ne contient que des -1 on retire la ligne et la colonne correspondante
+    # On effectue ceci jusqu'à ce que la matrice soit vide ou qu'il n'y ait plus de colonne nulle
+    
+    while True:
+        ancienne_matrice = copie_matrice.copy()
+        for j in range(len(copie_matrice)):
+            if all(copie_matrice[j][i] == -1 for i in range(len(copie_matrice))): # Si la colonne ne contient que des -1
+            # On retire la ligne et la colonne correspondante en utilisant pandas.drop()
+                copie_matrice = copie_matrice.drop(pd.DataFrame(copie_matrice[j]).index, axis=0)
+                copie_matrice = copie_matrice.drop(pd.DataFrame(copie_matrice[j]).index, axis=1)
+                continue # On passe à l'itération suivante
+        if copie_matrice.equals(ancienne_matrice): # Si la matrice n'a pas changé par rapport à l'itération précédente
+            break # On sort de la boucle
+
+    # Si la matrice est vide => il n'y a pas de circuit
+    # Si la matrice n'est pas vide mais qu'il n'y a plus de colonne nulle => il y a un circuit
+    if len(copie_matrice) == 0:
+        return False # Pas de circuit
+    else:
+        return True # Circuit
+
+def verifier_graphe(matrice):
+    print("\nIII. Vérification des propriétés du graphe d'ordonnancement : \n")
+    if verifier_arcs_negatifs(matrice):
+        print("Le graphe d'ordonnancement contient des arcs à valeurs négatives.")
+    else:
+        print("Le graphe d'ordonnancement ne contient pas d'arcs à valeurs négatives.")
+    
+    if verifier_circuit(matrice):
+        print("Le graphe d'ordonnancement contient un circuit.")
+    else:
+        print("Le graphe d'ordonnancement ne contient pas de circuit.")
+    
+    if not verifier_arcs_negatifs(matrice) and not verifier_circuit(matrice):
+        return True # On peut continuer
 # ETAPE 4 : Calcul des rangs des sommets à partir de la matrice des valeurs
 
 def calculer_rangs(matrice):
@@ -112,9 +154,13 @@ def afficher_rangs(rangs):
 # MAIN : Exécution des fonctions :
 
 if __name__ == "__main__":
-    file_name = 'graphes/test.txt'
-    sommets, duree, predecesseurs, successeurs = lire_fichier_contraintes(file_name)
-    afficher_graphe(sommets, successeurs, duree)
-    matrice_adjacence = creer_matrice_valeurs(sommets, successeurs, duree)
-    rangs = calculer_rangs(matrice_adjacence)
-    afficher_rangs(rangs)
+    for i in range(1,14):
+        print(f"Calculs sur le graphe {i} : \n")
+        file_name = f'graphes/table {i}.txt'
+        sommets, duree, predecesseurs, successeurs = lire_fichier_contraintes(file_name)
+        afficher_graphe(sommets, successeurs, duree)
+        matrice_valeurs = creer_matrice_valeurs(sommets, successeurs, duree)
+        afficher_matrice(matrice_valeurs)
+        if verifier_graphe(matrice_valeurs):
+            rangs = calculer_rangs(matrice_valeurs)
+            afficher_rangs(rangs)
