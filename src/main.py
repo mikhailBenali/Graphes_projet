@@ -1,4 +1,5 @@
 import pandas as pd
+import os, os.path
 
 # ETAPE 1 : Lecture du fichier et stockage des données
 
@@ -81,50 +82,52 @@ def afficher_matrice(matrice):
 # ETAPE 3 : Vérification des propriétés pour valider le graphe d'ordonnancement
 
 def verifier_arcs_negatifs(matrice):
+    # Renvoi False s'il y a des arcs à valeurs négatives, True sinon
     #Vérifier s'il y a des arcs à valeurs négatives
     for i in range(len(matrice)):
         for j in range(len(matrice)):
             if matrice[i][j] < -1: # S'il y a une valeur inférieure à -1
-                return True # Il y a un arc à valeur négative
-    return False
+                return False # Il y a un arc à valeur négative
+    return True
 
 def verifier_circuit(matrice):
-    copie_matrice = pd.DataFrame(matrice)
+    # Renvoie True s'il n'y a pas de circuit, False s'il y en a un
+    copie_matrice = matrice.copy()
     
     #Si une colonne ne contient que des -1 on retire la ligne et la colonne correspondante
     # On effectue ceci jusqu'à ce que la matrice soit vide ou qu'il n'y ait plus de colonne nulle
+    def retirer_colonne_nulle(matrice):
+        if len(matrice) == 0:
+            return True
+        else:
+            for colonne in range(len(matrice)):
+                if all(matrice[ligne][colonne] == -1 for ligne in range(len(matrice))):
+                    """print(f"Colonne vide : {colonne}")
+                    print(pd.DataFrame(matrice))"""
+                    matrice = [ligne[:colonne] + ligne[colonne+1:] for ligne in matrice] # On retire la colonne
+                    matrice = matrice[:colonne] + matrice[colonne+1:] # On retire la ligne
+                    return matrice # Si on retire une ligne et une colonne on renvoie la nouvelle matrice
+            return False # Si on ne retire pas de ligne et colonne on renvoie la matrice telle quelle
     
-    while True:
-        ancienne_matrice = copie_matrice.copy()
-        for j in range(len(copie_matrice)):
-            if all(copie_matrice[j][i] == -1 for i in range(len(copie_matrice))): # Si la colonne ne contient que des -1
-            # On retire la ligne et la colonne correspondante en utilisant pandas.drop()
-                copie_matrice = copie_matrice.drop(pd.DataFrame(copie_matrice[j]).index, axis=0)
-                copie_matrice = copie_matrice.drop(pd.DataFrame(copie_matrice[j]).index, axis=1)
-                continue # On passe à l'itération suivante
-        if copie_matrice.equals(ancienne_matrice): # Si la matrice n'a pas changé par rapport à l'itération précédente
-            break # On sort de la boucle
-
-    # Si la matrice est vide => il n'y a pas de circuit
-    # Si la matrice n'est pas vide mais qu'il n'y a plus de colonne nulle => il y a un circuit
-    if len(copie_matrice) == 0:
-        return False # Pas de circuit
-    else:
-        return True # Circuit
+    #Appel de la fonction retirer_colonne_nulle de manière récursive
+    while type(copie_matrice) != bool:
+        copie_matrice = retirer_colonne_nulle(copie_matrice)
+    
+    return copie_matrice
 
 def verifier_graphe(matrice):
     print("\nIII. Vérification des propriétés du graphe d'ordonnancement : \n")
-    if verifier_arcs_negatifs(matrice):
+    if not verifier_arcs_negatifs(matrice):
         print("Le graphe d'ordonnancement contient des arcs à valeurs négatives.")
     else:
         print("Le graphe d'ordonnancement ne contient pas d'arcs à valeurs négatives.")
     
-    if verifier_circuit(matrice):
+    if not verifier_circuit(matrice):
         print("Le graphe d'ordonnancement contient un circuit.")
     else:
         print("Le graphe d'ordonnancement ne contient pas de circuit.")
     
-    if not verifier_arcs_negatifs(matrice) and not verifier_circuit(matrice):
+    if  verifier_arcs_negatifs(matrice) and verifier_circuit(matrice):
         return True # On peut continuer
 # ETAPE 4 : Calcul des rangs des sommets à partir de la matrice des valeurs
 
@@ -141,7 +144,7 @@ def calculer_rangs(matrice):
                 rangs[i] = max(rangs[j] + 1 for j in range(nb_sommets) if matrice[j][i] != -1)
 
         # Vérifier s'il y a eu un changement dans les rangs
-        if rangs == anciens_rangs:
+        if rangs != anciens_rangs:
             break
 
     return rangs
@@ -150,13 +153,17 @@ def afficher_rangs(rangs):
     print("\n IV. Calcul du rang :\n")
     for i, rang in enumerate(rangs):
         print(f"Sommet {i}, rang = {rang}")
-    
+
+def decoration_affichage(message):
+    print("\n" + "#"*50 + "\n")
+    print(message)
+
 # MAIN : Exécution des fonctions :
 
 if __name__ == "__main__":
-    for i in range(1,14):
-        print(f"Calculs sur le graphe {i} : \n")
-        file_name = f'graphes/table {i}.txt'
+    for i in range(14):
+        decoration_affichage(f"Calculs sur le graphe {i+1}: \n")
+        file_name = f'graphes/table {i+1}.txt'
         sommets, duree, predecesseurs, successeurs = lire_fichier_contraintes(file_name)
         afficher_graphe(sommets, successeurs, duree)
         matrice_valeurs = creer_matrice_valeurs(sommets, successeurs, duree)
