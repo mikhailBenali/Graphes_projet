@@ -141,7 +141,7 @@ def calculer_rangs(matrice):
                 rangs[i] = max(rangs[j] + 1 for j in range(nb_sommets) if matrice[j][i] != -1)
 
         # Vérifier s'il y a eu un changement dans les rangs
-        if rangs == anciens_rangs:
+        if rangs != anciens_rangs:
             break
 
     return rangs
