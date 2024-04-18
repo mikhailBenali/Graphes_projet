@@ -90,9 +90,14 @@ def verifier_arcs_negatifs(matrice):
                 return False # Il y a un arc à valeur négative
     return True
 
-def verifier_circuit(matrice):
+def verifier_circuit(matrice, affichage = False):
     # Renvoie True s'il n'y a pas de circuit, False s'il y en a un
     copie_matrice = matrice.copy()
+    if affichage:
+        print("Détection de circuit :")
+        print("Méhode d'élimination des points d'entrée: ")
+    
+    sommets = [i for i in range(len(copie_matrice))]
     
     #Si une colonne ne contient que des -1 on retire la ligne et la colonne correspondante
     # On effectue ceci jusqu'à ce que la matrice soit vide ou qu'il n'y ait plus de colonne nulle
@@ -102,8 +107,20 @@ def verifier_circuit(matrice):
         else:
             for colonne in range(len(matrice)):
                 if all(matrice[ligne][colonne] == -1 for ligne in range(len(matrice))):
-                    """print(f"Colonne vide : {colonne}")
-                    print(pd.DataFrame(matrice))"""
+                    
+                    if affichage:
+                        print(f"Point d'entrée : {sommets[colonne]}")
+                        sommets.pop(colonne)
+                        if sommets != []:
+                            print(f"Sommets restants : ",end="")
+                            for sommet in sommets:
+                                print(sommet, end=" ")
+                            print("\n")
+                        else:
+                            print("\nIl n'y a plus aucun sommets restants\n")
+                    else:
+                        sommets.pop(colonne)
+                        
                     matrice = [ligne[:colonne] + ligne[colonne+1:] for ligne in matrice] # On retire la colonne
                     matrice = matrice[:colonne] + matrice[colonne+1:] # On retire la ligne
                     return matrice # Si on retire une ligne et une colonne on renvoie la nouvelle matrice
@@ -117,17 +134,18 @@ def verifier_circuit(matrice):
 
 def verifier_graphe(matrice):
     print("\nIII. Vérification des propriétés du graphe d'ordonnancement : \n")
+    
     if not verifier_arcs_negatifs(matrice):
         print("Le graphe d'ordonnancement contient des arcs à valeurs négatives.")
     else:
         print("Le graphe d'ordonnancement ne contient pas d'arcs à valeurs négatives.")
     
-    if not verifier_circuit(matrice):
+    if not verifier_circuit(matrice,affichage=True):
         print("Le graphe d'ordonnancement contient un circuit.")
     else:
         print("Le graphe d'ordonnancement ne contient pas de circuit.")
     
-    if  verifier_arcs_negatifs(matrice) and verifier_circuit(matrice):
+    if verifier_arcs_negatifs(matrice) and verifier_circuit(matrice):
         return True # On peut continuer
 # ETAPE 4 : Calcul des rangs des sommets à partir de la matrice des valeurs
 
