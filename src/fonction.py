@@ -170,6 +170,8 @@ def afficher_rangs(rangs):
     for i, rang in enumerate(rangs):
         print(f"Sommet {i}, rang = {rang}")
 
+# ETAPE 5 : Calcul des dates au plus tôt/tard et marge
+
 def calendrier_plus_tot(rangs,predecesseurs,duree) :
     print("\n V. a) Calendrier au plus tot :\n")
     date_au_plus_tot=[0]*len(rangs)
