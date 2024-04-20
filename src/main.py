@@ -10,7 +10,10 @@ while True:
     if choix == "1":
         num_graphe = int(input("Entrer le n° de tableau de contrainte à tester (entre 1 et 14) : "))
         if 1 <= num_graphe <= 14:
-            decoration_affichage(f"Calculs sur le graphe {num_graphe}: \n")
+            with open("traces.txt", "a") as f:
+                decoration_affichage(f"Calculs sur le graphe {num_graphe}: \n")
+                f.write("\n" + f"#" * 50 + "\n")
+                f.write(f"\nCalculs sur le graphe {num_graphe}: \n")
             file_name = f'graphes/table {num_graphe}.txt'
             sommets, duree, successeurs = lire_fichier_contraintes(file_name)
             afficher_graphe(sommets, successeurs, duree)
