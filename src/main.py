@@ -14,7 +14,7 @@ while True:
                 decoration_affichage(f"Calculs sur le graphe {num_graphe}: \n")
                 f.write("\n" + f"#" * 50 + "\n")
                 f.write(f"\nCalculs sur le graphe {num_graphe}: \n")
-            file_name = f'../graphes/table {num_graphe}.txt'
+            file_name = f'graphes/table {num_graphe}.txt'
             sommets, duree, successeurs, predecesseurs = lire_fichier_contraintes(file_name)
             afficher_graphe(sommets, successeurs, duree)
             matrice_valeurs = creer_matrice_valeurs(sommets, successeurs, duree)
