@@ -34,6 +34,7 @@ def lire_fichier_contraintes(file_name):
     allpreds = set(allpreds)
 
     predecesseurs.append([i for i in sommets if i not in allpreds])
+    predecesseurs[-1].remove(sommets[-1]) # On retire omega de la liste des prédécesseurs d'omega
 
     successeurs = [[] for i in range(len(sommets))]
 
@@ -79,11 +80,11 @@ def creer_matrice_valeurs(sommets, successeurs, duree):
     print("\nII. Création de la matrice des valeurs \n\n")
 
     # On initialise la matrice à -1 en ajoutant 2 sommets pour alpha et omega
-    matrice_valeurs = [[-1 for i in range(len(sommets))] for j in range(len(sommets))]
+    matrice_valeurs = [[None for i in range(len(sommets))] for j in range(len(sommets))]
 
     for i in range(len(sommets)):
         for j in range(len(sommets)):
-            matrice_valeurs[i][j] = duree[i] if j in successeurs[i] else -1
+            matrice_valeurs[i][j] = duree[i] if j in successeurs[i] else "*"
 
     return matrice_valeurs
 
@@ -101,8 +102,9 @@ def verifier_arcs_negatifs(matrice):
     # Vérifier s'il y a des arcs à valeurs négatives
     for i in range(len(matrice)):
         for j in range(len(matrice)):
-            if matrice[i][j] < -1: # S'il y a une valeur inférieure à -1
-                return False # Il y a un arc à valeur négative
+            if type(matrice[i][j]) == int: # Si l'arc contient un nombre
+                if matrice[i][j] < 0: # Si la valeur de l'arc est négative
+                    return False
     return True
 
 def verifier_circuit(matrice, affichage = False):
@@ -121,15 +123,14 @@ def verifier_circuit(matrice, affichage = False):
         
         sommets = [i for i in range(len(copie_matrice))]
         
-        #Si une colonne ne contient que des -1 on retire la ligne et la colonne correspondante
+        #Si une colonne ne contient que des * on retire la ligne et la colonne correspondante
         # On effectue ceci jusqu'à ce que la matrice soit vide ou qu'il n'y ait plus de colonne nulle
         def retirer_colonne_nulle(matrice):
             if len(matrice) == 0:
                 return True
             else:
                 for colonne in range(len(matrice)):
-                    if all(matrice[ligne][colonne] == -1 for ligne in range(len(matrice))):
-                        
+                    if all(matrice[ligne][colonne] == "*" for ligne in range(len(matrice))):
                         if affichage:
                             print(f"Point d'entrée : {sommets[colonne]}")
                             f.write(f"Point d'entree : {sommets[colonne]}\n")
@@ -146,12 +147,12 @@ def verifier_circuit(matrice, affichage = False):
                                 print("\nIl n'y a plus aucun sommets restants\n")
                                 f.write("\nIl n'y a plus aucun sommets restants\n")
                         else:
-                            sommets.pop(colonne)
+                            sommets.pop(colonne) # On retire le sommet de la liste des sommets
                             
-                        matrice = [ligne[:colonne] + ligne[colonne+1:] for ligne in matrice] # On retire la colonne
-                        matrice = matrice[:colonne] + matrice[colonne+1:] # On retire la ligne
+                        matrice = [ligne[:colonne] + ligne[colonne+1:] for ligne in matrice] # On retire la colonne de la matrice
+                        matrice = matrice[:colonne] + matrice[colonne+1:] # On retire la ligne de la matrice
                         return matrice # Si on retire une ligne et une colonne on renvoie la nouvelle matrice
-                return False # Si on ne retire pas de ligne et colonne on renvoie la matrice telle quelle
+                return False # Si on ne retire pas de ligne et colonne on renvoie False
         
         #Appel de la fonction retirer_colonne_nulle de manière récursive
         while type(copie_matrice) != bool:
@@ -182,20 +183,22 @@ def verifier_graphe(matrice):
 
 # ETAPE 4 : Calcul des rangs des sommets à partir de la matrice des valeurs
 
-def calculer_rangs(matrice):
-    nb_sommets = len(matrice)
-    rangs = [0] * nb_sommets
-
-    while True:
-        anciens_rangs = rangs.copy()
-        for i in range(nb_sommets):
-            # Si le sommet i a des prédécesseurs
-            if any(matrice[j][i] != -1 for j in range(nb_sommets)):
-                rangs[i] = max(rangs[j] + 1 for j in range(nb_sommets) if matrice[j][i] != -1)
-        # Vérifier s'il y a eu un changement dans les rangs
-        if rangs != anciens_rangs:
-            break
-    return rangs
+def calculer_rangs(matrice,pred):
+        rangs = [0]*len(matrice)
+        copie_rangs = []
+        
+        def rang(sommet):
+            if pred[sommet] is not None:
+                return max(rangs[i] for i in pred[sommet]) + 1
+            else:
+                return 0
+        
+        while rangs != copie_rangs:
+            copie_rangs = rangs.copy()
+            for i in range(1,len(rangs)):
+                rangs[i] = rang(i)
+        
+        return rangs
 
 def afficher_rangs(rangs):
     with open("traces.txt", "a") as f:
