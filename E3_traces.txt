@@ -1,0 +1,1889 @@
+##################################################
+
+Calculs sur le graphe 1: 
+
+I. Graphe d'ordonnancement : 
+
+Nombre de sommets : 15
+Nombre d'arcs : 18
+0 -> 1 = 0
+0 -> 2 = 0
+1 -> 3 = 2
+2 -> 4 = 5
+3 -> 4 = 4
+3 -> 12 = 4
+4 -> 5 = 2
+4 -> 11 = 2
+5 -> 6 = 5
+6 -> 7 = 5
+6 -> 13 = 5
+7 -> 8 = 9
+8 -> 9 = 2
+9 -> 14 = 5
+10 -> 14 = 1
+11 -> 10 = 1
+12 -> 13 = 1
+13 -> 4 = 9
+
+
+II. Creation de la matrice des valeurs 
+
+   0  1  2  3  4  5  6  7  8  9  10 11 12 13 14
+0   *  0  0  *  *  *  *  *  *  *  *  *  *  *  *
+1   *  *  *  2  *  *  *  *  *  *  *  *  *  *  *
+2   *  *  *  *  5  *  *  *  *  *  *  *  *  *  *
+3   *  *  *  *  4  *  *  *  *  *  *  *  4  *  *
+4   *  *  *  *  *  2  *  *  *  *  *  2  *  *  *
+5   *  *  *  *  *  *  5  *  *  *  *  *  *  *  *
+6   *  *  *  *  *  *  *  5  *  *  *  *  *  5  *
+7   *  *  *  *  *  *  *  *  9  *  *  *  *  *  *
+8   *  *  *  *  *  *  *  *  *  2  *  *  *  *  *
+9   *  *  *  *  *  *  *  *  *  *  *  *  *  *  5
+10  *  *  *  *  *  *  *  *  *  *  *  *  *  *  1
+11  *  *  *  *  *  *  *  *  *  *  1  *  *  *  *
+12  *  *  *  *  *  *  *  *  *  *  *  *  *  1  *
+13  *  *  *  *  9  *  *  *  *  *  *  *  *  *  *
+14  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+
+
+III. Verification des proprietes du graphe d'ordonnancement : 
+
+Detection de circuit : 
+
+Methode d'elimination des points d'entree: 
+Point d'entree : 0
+Sommets restants : 1 2 3 4 5 6 7 8 9 10 11 12 13 14 
+Point d'entree : 1
+Sommets restants : 2 3 4 5 6 7 8 9 10 11 12 13 14 
+Point d'entree : 2
+Sommets restants : 3 4 5 6 7 8 9 10 11 12 13 14 
+Point d'entree : 3
+Sommets restants : 4 5 6 7 8 9 10 11 12 13 14 
+Point d'entree : 12
+Sommets restants : 4 5 6 7 8 9 10 11 13 14 
+
+Le graphe d'ordonnancement ne contient pas d'arcs a valeurs negatives.
+
+Le graphe d'ordonnancement contient un circuit.
+
+##################################################
+
+Calculs sur le graphe 2: 
+
+I. Graphe d'ordonnancement : 
+
+Nombre de sommets : 15
+Nombre d'arcs : 23
+0 -> 1 = 0
+0 -> 2 = 0
+1 -> 3 = 2
+1 -> 6 = 2
+2 -> 6 = 5
+3 -> 4 = 4
+4 -> 5 = 1
+5 -> 14 = 9
+6 -> 5 = 2
+6 -> 7 = 2
+6 -> 11 = 2
+6 -> 13 = 2
+7 -> 8 = 5
+7 -> 12 = 5
+8 -> 5 = 5
+8 -> 9 = 5
+8 -> 12 = 5
+9 -> 10 = 9
+9 -> 12 = 9
+10 -> 12 = 2
+11 -> 13 = 19
+12 -> 14 = 5
+13 -> 14 = 1
+
+
+II. Creation de la matrice des valeurs 
+
+   0  1  2  3  4  5  6  7  8  9  10 11 12  13 14
+0   *  0  0  *  *  *  *  *  *  *  *  *  *   *  *
+1   *  *  *  2  *  *  2  *  *  *  *  *  *   *  *
+2   *  *  *  *  *  *  5  *  *  *  *  *  *   *  *
+3   *  *  *  *  4  *  *  *  *  *  *  *  *   *  *
+4   *  *  *  *  *  1  *  *  *  *  *  *  *   *  *
+5   *  *  *  *  *  *  *  *  *  *  *  *  *   *  9
+6   *  *  *  *  *  2  *  2  *  *  *  2  *   2  *
+7   *  *  *  *  *  *  *  *  5  *  *  *  5   *  *
+8   *  *  *  *  *  5  *  *  *  5  *  *  5   *  *
+9   *  *  *  *  *  *  *  *  *  *  9  *  9   *  *
+10  *  *  *  *  *  *  *  *  *  *  *  *  2   *  *
+11  *  *  *  *  *  *  *  *  *  *  *  *  *  19  *
+12  *  *  *  *  *  *  *  *  *  *  *  *  *   *  5
+13  *  *  *  *  *  *  *  *  *  *  *  *  *   *  1
+14  *  *  *  *  *  *  *  *  *  *  *  *  *   *  *
+
+
+III. Verification des proprietes du graphe d'ordonnancement : 
+
+Detection de circuit : 
+
+Methode d'elimination des points d'entree: 
+Point d'entree : 0
+Sommets restants : 1 2 3 4 5 6 7 8 9 10 11 12 13 14 
+Point d'entree : 1
+Sommets restants : 2 3 4 5 6 7 8 9 10 11 12 13 14 
+Point d'entree : 2
+Sommets restants : 3 4 5 6 7 8 9 10 11 12 13 14 
+Point d'entree : 3
+Sommets restants : 4 5 6 7 8 9 10 11 12 13 14 
+Point d'entree : 4
+Sommets restants : 5 6 7 8 9 10 11 12 13 14 
+Point d'entree : 6
+Sommets restants : 5 7 8 9 10 11 12 13 14 
+Point d'entree : 7
+Sommets restants : 5 8 9 10 11 12 13 14 
+Point d'entree : 8
+Sommets restants : 5 9 10 11 12 13 14 
+Point d'entree : 5
+Sommets restants : 9 10 11 12 13 14 
+Point d'entree : 9
+Sommets restants : 10 11 12 13 14 
+Point d'entree : 10
+Sommets restants : 11 12 13 14 
+Point d'entree : 11
+Sommets restants : 12 13 14 
+Point d'entree : 12
+Sommets restants : 13 14 
+Point d'entree : 13
+Sommets restants : 14 
+Point d'entree : 14
+
+Il n'y a plus aucun sommets restants
+
+Le graphe d'ordonnancement ne contient pas d'arcs a valeurs negatives.
+
+Le graphe d'ordonnancement ne contient pas de circuit.
+
+
+IV. Calcul du rang :
+
+Sommet 0, rang = 0
+Sommet 1, rang = 1
+Sommet 2, rang = 1
+Sommet 3, rang = 2
+Sommet 4, rang = 3
+Sommet 5, rang = 5
+Sommet 6, rang = 2
+Sommet 7, rang = 3
+Sommet 8, rang = 4
+Sommet 9, rang = 5
+Sommet 10, rang = 6
+Sommet 11, rang = 3
+Sommet 12, rang = 7
+Sommet 13, rang = 4
+Sommet 14, rang = 8
+
+
+ V. a) Calendrier au plus tot :
+
+Sommet 0, date au plus tôt = 0
+Sommet 1, date au plus tôt = 0
+Sommet 2, date au plus tôt = 0
+Sommet 3, date au plus tôt = 2
+Sommet 4, date au plus tôt = 6
+Sommet 5, date au plus tôt = 17
+Sommet 6, date au plus tôt = 5
+Sommet 7, date au plus tôt = 7
+Sommet 8, date au plus tôt = 12
+Sommet 9, date au plus tôt = 17
+Sommet 10, date au plus tôt = 26
+Sommet 11, date au plus tôt = 7
+Sommet 12, date au plus tôt = 28
+Sommet 13, date au plus tôt = 26
+Sommet 14, date au plus tôt = 33
+
+
+ V. b) Calendrier au plus tard :
+
+Sommet 0, date au plus tard = 0
+Sommet 1, date au plus tard = 3
+Sommet 2, date au plus tard = 0
+Sommet 3, date au plus tard = 19
+Sommet 4, date au plus tard = 23
+Sommet 5, date au plus tard = 24
+Sommet 6, date au plus tard = 5
+Sommet 7, date au plus tard = 7
+Sommet 8, date au plus tard = 12
+Sommet 9, date au plus tard = 17
+Sommet 10, date au plus tard = 26
+Sommet 11, date au plus tard = 13
+Sommet 12, date au plus tard = 28
+Sommet 13, date au plus tard = 32
+Sommet 14, date au plus tard = 33
+
+
+ V. c) Calendrier des marges :
+
+Sommet 0, marge = 0
+Sommet 1, marge = 3
+Sommet 2, marge = 0
+Sommet 3, marge = 17
+Sommet 4, marge = 17
+Sommet 5, marge = 7
+Sommet 6, marge = 0
+Sommet 7, marge = 0
+Sommet 8, marge = 0
+Sommet 9, marge = 0
+Sommet 10, marge = 0
+Sommet 11, marge = 6
+Sommet 12, marge = 0
+Sommet 13, marge = 6
+Sommet 14, marge = 0
+
+
+ VI. Chemin(s) critique(s):
+
+0 -> 2 -> 6 -> 7 -> 8 -> 9 -> 10 -> 12 -> 14
+
+##################################################
+
+Calculs sur le graphe 3: 
+
+I. Graphe d'ordonnancement : 
+
+Nombre de sommets : 14
+Nombre d'arcs : 22
+0 -> 1 = 0
+0 -> 2 = 0
+1 -> 3 = 2
+2 -> 3 = 5
+2 -> 4 = 5
+3 -> 12 = 4
+4 -> 3 = 2
+4 -> 5 = 2
+4 -> 8 = 2
+4 -> 11 = 2
+5 -> 6 = 5
+5 -> 9 = 5
+6 -> 7 = 5
+6 -> 8 = 5
+6 -> 9 = 5
+7 -> 8 = 9
+7 -> 9 = 9
+8 -> 13 = 1
+9 -> 13 = 5
+10 -> 13 = 9
+11 -> 10 = 1
+12 -> 8 = 1
+
+
+II. Creation de la matrice des valeurs 
+
+   0  1  2  3  4  5  6  7  8  9  10 11 12 13
+0   *  0  0  *  *  *  *  *  *  *  *  *  *  *
+1   *  *  *  2  *  *  *  *  *  *  *  *  *  *
+2   *  *  *  5  5  *  *  *  *  *  *  *  *  *
+3   *  *  *  *  *  *  *  *  *  *  *  *  4  *
+4   *  *  *  2  *  2  *  *  2  *  *  2  *  *
+5   *  *  *  *  *  *  5  *  *  5  *  *  *  *
+6   *  *  *  *  *  *  *  5  5  5  *  *  *  *
+7   *  *  *  *  *  *  *  *  9  9  *  *  *  *
+8   *  *  *  *  *  *  *  *  *  *  *  *  *  1
+9   *  *  *  *  *  *  *  *  *  *  *  *  *  5
+10  *  *  *  *  *  *  *  *  *  *  *  *  *  9
+11  *  *  *  *  *  *  *  *  *  *  1  *  *  *
+12  *  *  *  *  *  *  *  *  1  *  *  *  *  *
+13  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+
+
+III. Verification des proprietes du graphe d'ordonnancement : 
+
+Detection de circuit : 
+
+Methode d'elimination des points d'entree: 
+Point d'entree : 0
+Sommets restants : 1 2 3 4 5 6 7 8 9 10 11 12 13 
+Point d'entree : 1
+Sommets restants : 2 3 4 5 6 7 8 9 10 11 12 13 
+Point d'entree : 2
+Sommets restants : 3 4 5 6 7 8 9 10 11 12 13 
+Point d'entree : 4
+Sommets restants : 3 5 6 7 8 9 10 11 12 13 
+Point d'entree : 3
+Sommets restants : 5 6 7 8 9 10 11 12 13 
+Point d'entree : 5
+Sommets restants : 6 7 8 9 10 11 12 13 
+Point d'entree : 6
+Sommets restants : 7 8 9 10 11 12 13 
+Point d'entree : 7
+Sommets restants : 8 9 10 11 12 13 
+Point d'entree : 9
+Sommets restants : 8 10 11 12 13 
+Point d'entree : 11
+Sommets restants : 8 10 12 13 
+Point d'entree : 10
+Sommets restants : 8 12 13 
+Point d'entree : 12
+Sommets restants : 8 13 
+Point d'entree : 8
+Sommets restants : 13 
+Point d'entree : 13
+
+Il n'y a plus aucun sommets restants
+
+Le graphe d'ordonnancement ne contient pas d'arcs a valeurs negatives.
+
+Le graphe d'ordonnancement ne contient pas de circuit.
+
+
+IV. Calcul du rang :
+
+Sommet 0, rang = 0
+Sommet 1, rang = 1
+Sommet 2, rang = 1
+Sommet 3, rang = 3
+Sommet 4, rang = 2
+Sommet 5, rang = 3
+Sommet 6, rang = 4
+Sommet 7, rang = 5
+Sommet 8, rang = 6
+Sommet 9, rang = 6
+Sommet 10, rang = 4
+Sommet 11, rang = 3
+Sommet 12, rang = 4
+Sommet 13, rang = 7
+
+
+ V. a) Calendrier au plus tot :
+
+Sommet 0, date au plus tôt = 0
+Sommet 1, date au plus tôt = 0
+Sommet 2, date au plus tôt = 0
+Sommet 3, date au plus tôt = 7
+Sommet 4, date au plus tôt = 5
+Sommet 5, date au plus tôt = 7
+Sommet 6, date au plus tôt = 12
+Sommet 7, date au plus tôt = 17
+Sommet 8, date au plus tôt = 26
+Sommet 9, date au plus tôt = 26
+Sommet 10, date au plus tôt = 8
+Sommet 11, date au plus tôt = 7
+Sommet 12, date au plus tôt = 11
+Sommet 13, date au plus tôt = 31
+
+
+ V. b) Calendrier au plus tard :
+
+Sommet 0, date au plus tard = 0
+Sommet 1, date au plus tard = 23
+Sommet 2, date au plus tard = 0
+Sommet 3, date au plus tard = 25
+Sommet 4, date au plus tard = 5
+Sommet 5, date au plus tard = 7
+Sommet 6, date au plus tard = 12
+Sommet 7, date au plus tard = 17
+Sommet 8, date au plus tard = 30
+Sommet 9, date au plus tard = 26
+Sommet 10, date au plus tard = 22
+Sommet 11, date au plus tard = 21
+Sommet 12, date au plus tard = 29
+Sommet 13, date au plus tard = 31
+
+
+ V. c) Calendrier des marges :
+
+Sommet 0, marge = 0
+Sommet 1, marge = 23
+Sommet 2, marge = 0
+Sommet 3, marge = 18
+Sommet 4, marge = 0
+Sommet 5, marge = 0
+Sommet 6, marge = 0
+Sommet 7, marge = 0
+Sommet 8, marge = 4
+Sommet 9, marge = 0
+Sommet 10, marge = 14
+Sommet 11, marge = 14
+Sommet 12, marge = 18
+Sommet 13, marge = 0
+
+
+ VI. Chemin(s) critique(s):
+
+0 -> 2 -> 4 -> 5 -> 6 -> 7 -> 9 -> 13
+
+##################################################
+
+Calculs sur le graphe 4: 
+
+I. Graphe d'ordonnancement : 
+
+Nombre de sommets : 13
+Nombre d'arcs : 16
+0 -> 1 = 0
+0 -> 2 = 0
+1 -> 4 = 3
+2 -> 3 = 2
+3 -> 10 = 3
+4 -> 5 = 5
+4 -> 7 = 5
+4 -> 9 = 5
+5 -> 6 = 4
+5 -> 8 = 4
+6 -> 11 = 2
+7 -> 8 = 2
+8 -> 11 = 4
+9 -> 10 = 5
+10 -> 12 = 1
+11 -> 12 = 2
+
+
+II. Creation de la matrice des valeurs 
+
+   0  1  2  3  4  5  6  7  8  9  10 11 12
+0   *  0  0  *  *  *  *  *  *  *  *  *  *
+1   *  *  *  *  3  *  *  *  *  *  *  *  *
+2   *  *  *  2  *  *  *  *  *  *  *  *  *
+3   *  *  *  *  *  *  *  *  *  *  3  *  *
+4   *  *  *  *  *  5  *  5  *  5  *  *  *
+5   *  *  *  *  *  *  4  *  4  *  *  *  *
+6   *  *  *  *  *  *  *  *  *  *  *  2  *
+7   *  *  *  *  *  *  *  *  2  *  *  *  *
+8   *  *  *  *  *  *  *  *  *  *  *  4  *
+9   *  *  *  *  *  *  *  *  *  *  5  *  *
+10  *  *  *  *  *  *  *  *  *  *  *  *  1
+11  *  *  *  *  *  *  *  *  *  *  *  *  2
+12  *  *  *  *  *  *  *  *  *  *  *  *  *
+
+
+III. Verification des proprietes du graphe d'ordonnancement : 
+
+Detection de circuit : 
+
+Methode d'elimination des points d'entree: 
+Point d'entree : 0
+Sommets restants : 1 2 3 4 5 6 7 8 9 10 11 12 
+Point d'entree : 1
+Sommets restants : 2 3 4 5 6 7 8 9 10 11 12 
+Point d'entree : 2
+Sommets restants : 3 4 5 6 7 8 9 10 11 12 
+Point d'entree : 3
+Sommets restants : 4 5 6 7 8 9 10 11 12 
+Point d'entree : 4
+Sommets restants : 5 6 7 8 9 10 11 12 
+Point d'entree : 5
+Sommets restants : 6 7 8 9 10 11 12 
+Point d'entree : 6
+Sommets restants : 7 8 9 10 11 12 
+Point d'entree : 7
+Sommets restants : 8 9 10 11 12 
+Point d'entree : 8
+Sommets restants : 9 10 11 12 
+Point d'entree : 9
+Sommets restants : 10 11 12 
+Point d'entree : 10
+Sommets restants : 11 12 
+Point d'entree : 11
+Sommets restants : 12 
+Point d'entree : 12
+
+Il n'y a plus aucun sommets restants
+
+Le graphe d'ordonnancement ne contient pas d'arcs a valeurs negatives.
+
+Le graphe d'ordonnancement ne contient pas de circuit.
+
+
+IV. Calcul du rang :
+
+Sommet 0, rang = 0
+Sommet 1, rang = 1
+Sommet 2, rang = 1
+Sommet 3, rang = 2
+Sommet 4, rang = 2
+Sommet 5, rang = 3
+Sommet 6, rang = 4
+Sommet 7, rang = 3
+Sommet 8, rang = 4
+Sommet 9, rang = 3
+Sommet 10, rang = 4
+Sommet 11, rang = 5
+Sommet 12, rang = 6
+
+
+ V. a) Calendrier au plus tot :
+
+Sommet 0, date au plus tôt = 0
+Sommet 1, date au plus tôt = 0
+Sommet 2, date au plus tôt = 0
+Sommet 3, date au plus tôt = 2
+Sommet 4, date au plus tôt = 3
+Sommet 5, date au plus tôt = 8
+Sommet 6, date au plus tôt = 12
+Sommet 7, date au plus tôt = 8
+Sommet 8, date au plus tôt = 12
+Sommet 9, date au plus tôt = 8
+Sommet 10, date au plus tôt = 13
+Sommet 11, date au plus tôt = 16
+Sommet 12, date au plus tôt = 18
+
+
+ V. b) Calendrier au plus tard :
+
+Sommet 0, date au plus tard = 0
+Sommet 1, date au plus tard = 0
+Sommet 2, date au plus tard = 12
+Sommet 3, date au plus tard = 14
+Sommet 4, date au plus tard = 3
+Sommet 5, date au plus tard = 8
+Sommet 6, date au plus tard = 14
+Sommet 7, date au plus tard = 10
+Sommet 8, date au plus tard = 12
+Sommet 9, date au plus tard = 12
+Sommet 10, date au plus tard = 17
+Sommet 11, date au plus tard = 16
+Sommet 12, date au plus tard = 18
+
+
+ V. c) Calendrier des marges :
+
+Sommet 0, marge = 0
+Sommet 1, marge = 0
+Sommet 2, marge = 12
+Sommet 3, marge = 12
+Sommet 4, marge = 0
+Sommet 5, marge = 0
+Sommet 6, marge = 2
+Sommet 7, marge = 2
+Sommet 8, marge = 0
+Sommet 9, marge = 4
+Sommet 10, marge = 4
+Sommet 11, marge = 0
+Sommet 12, marge = 0
+
+
+ VI. Chemin(s) critique(s):
+
+0 -> 1 -> 4 -> 5 -> 8 -> 11 -> 12
+
+##################################################
+
+Calculs sur le graphe 5: 
+
+I. Graphe d'ordonnancement : 
+
+Nombre de sommets : 15
+Nombre d'arcs : 18
+0 -> 1 = 0
+0 -> 2 = 0
+1 -> 3 = 2
+2 -> 4 = 5
+3 -> 4 = 4
+3 -> 12 = 4
+4 -> 5 = 2
+4 -> 11 = 2
+5 -> 6 = 5
+6 -> 7 = 5
+6 -> 13 = 5
+7 -> 8 = 9
+8 -> 9 = 2
+9 -> 14 = 5
+10 -> 14 = 1
+11 -> 10 = 1
+12 -> 13 = 1
+13 -> 14 = 9
+
+
+II. Creation de la matrice des valeurs 
+
+   0  1  2  3  4  5  6  7  8  9  10 11 12 13 14
+0   *  0  0  *  *  *  *  *  *  *  *  *  *  *  *
+1   *  *  *  2  *  *  *  *  *  *  *  *  *  *  *
+2   *  *  *  *  5  *  *  *  *  *  *  *  *  *  *
+3   *  *  *  *  4  *  *  *  *  *  *  *  4  *  *
+4   *  *  *  *  *  2  *  *  *  *  *  2  *  *  *
+5   *  *  *  *  *  *  5  *  *  *  *  *  *  *  *
+6   *  *  *  *  *  *  *  5  *  *  *  *  *  5  *
+7   *  *  *  *  *  *  *  *  9  *  *  *  *  *  *
+8   *  *  *  *  *  *  *  *  *  2  *  *  *  *  *
+9   *  *  *  *  *  *  *  *  *  *  *  *  *  *  5
+10  *  *  *  *  *  *  *  *  *  *  *  *  *  *  1
+11  *  *  *  *  *  *  *  *  *  *  1  *  *  *  *
+12  *  *  *  *  *  *  *  *  *  *  *  *  *  1  *
+13  *  *  *  *  *  *  *  *  *  *  *  *  *  *  9
+14  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+
+
+III. Verification des proprietes du graphe d'ordonnancement : 
+
+Detection de circuit : 
+
+Methode d'elimination des points d'entree: 
+Point d'entree : 0
+Sommets restants : 1 2 3 4 5 6 7 8 9 10 11 12 13 14 
+Point d'entree : 1
+Sommets restants : 2 3 4 5 6 7 8 9 10 11 12 13 14 
+Point d'entree : 2
+Sommets restants : 3 4 5 6 7 8 9 10 11 12 13 14 
+Point d'entree : 3
+Sommets restants : 4 5 6 7 8 9 10 11 12 13 14 
+Point d'entree : 4
+Sommets restants : 5 6 7 8 9 10 11 12 13 14 
+Point d'entree : 5
+Sommets restants : 6 7 8 9 10 11 12 13 14 
+Point d'entree : 6
+Sommets restants : 7 8 9 10 11 12 13 14 
+Point d'entree : 7
+Sommets restants : 8 9 10 11 12 13 14 
+Point d'entree : 8
+Sommets restants : 9 10 11 12 13 14 
+Point d'entree : 9
+Sommets restants : 10 11 12 13 14 
+Point d'entree : 11
+Sommets restants : 10 12 13 14 
+Point d'entree : 10
+Sommets restants : 12 13 14 
+Point d'entree : 12
+Sommets restants : 13 14 
+Point d'entree : 13
+Sommets restants : 14 
+Point d'entree : 14
+
+Il n'y a plus aucun sommets restants
+
+Le graphe d'ordonnancement ne contient pas d'arcs a valeurs negatives.
+
+Le graphe d'ordonnancement ne contient pas de circuit.
+
+
+IV. Calcul du rang :
+
+Sommet 0, rang = 0
+Sommet 1, rang = 1
+Sommet 2, rang = 1
+Sommet 3, rang = 2
+Sommet 4, rang = 3
+Sommet 5, rang = 4
+Sommet 6, rang = 5
+Sommet 7, rang = 6
+Sommet 8, rang = 7
+Sommet 9, rang = 8
+Sommet 10, rang = 5
+Sommet 11, rang = 4
+Sommet 12, rang = 3
+Sommet 13, rang = 6
+Sommet 14, rang = 9
+
+
+ V. a) Calendrier au plus tot :
+
+Sommet 0, date au plus tôt = 0
+Sommet 1, date au plus tôt = 0
+Sommet 2, date au plus tôt = 0
+Sommet 3, date au plus tôt = 2
+Sommet 4, date au plus tôt = 6
+Sommet 5, date au plus tôt = 8
+Sommet 6, date au plus tôt = 13
+Sommet 7, date au plus tôt = 18
+Sommet 8, date au plus tôt = 27
+Sommet 9, date au plus tôt = 29
+Sommet 10, date au plus tôt = 9
+Sommet 11, date au plus tôt = 8
+Sommet 12, date au plus tôt = 6
+Sommet 13, date au plus tôt = 18
+Sommet 14, date au plus tôt = 34
+
+
+ V. b) Calendrier au plus tard :
+
+Sommet 0, date au plus tard = 0
+Sommet 1, date au plus tard = 0
+Sommet 2, date au plus tard = 1
+Sommet 3, date au plus tard = 2
+Sommet 4, date au plus tard = 6
+Sommet 5, date au plus tard = 8
+Sommet 6, date au plus tard = 13
+Sommet 7, date au plus tard = 18
+Sommet 8, date au plus tard = 27
+Sommet 9, date au plus tard = 29
+Sommet 10, date au plus tard = 33
+Sommet 11, date au plus tard = 32
+Sommet 12, date au plus tard = 24
+Sommet 13, date au plus tard = 25
+Sommet 14, date au plus tard = 34
+
+
+ V. c) Calendrier des marges :
+
+Sommet 0, marge = 0
+Sommet 1, marge = 0
+Sommet 2, marge = 1
+Sommet 3, marge = 0
+Sommet 4, marge = 0
+Sommet 5, marge = 0
+Sommet 6, marge = 0
+Sommet 7, marge = 0
+Sommet 8, marge = 0
+Sommet 9, marge = 0
+Sommet 10, marge = 24
+Sommet 11, marge = 24
+Sommet 12, marge = 18
+Sommet 13, marge = 7
+Sommet 14, marge = 0
+
+
+ VI. Chemin(s) critique(s):
+
+0 -> 1 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 14
+
+##################################################
+
+Calculs sur le graphe 6: 
+
+I. Graphe d'ordonnancement : 
+
+Nombre de sommets : 14
+Nombre d'arcs : 23
+0 -> 1 = 0
+0 -> 2 = 0
+1 -> 3 = 10
+1 -> 4 = 10
+1 -> 12 = 10
+2 -> 3 = 10
+2 -> 4 = 10
+3 -> 9 = 9
+3 -> 10 = 9
+4 -> 5 = 5
+4 -> 7 = 5
+4 -> 9 = 5
+5 -> 6 = 4
+5 -> 8 = 4
+6 -> 11 = 2
+6 -> 12 = 2
+7 -> 8 = 2
+8 -> 11 = 4
+9 -> 8 = 8
+9 -> 10 = 8
+10 -> 11 = 12
+11 -> 13 = 2
+12 -> 13 = 20
+
+
+II. Creation de la matrice des valeurs 
+
+   0  1  2   3   4  5  6  7  8  9  10  11  12  13
+0   *  0  0   *   *  *  *  *  *  *  *   *   *   *
+1   *  *  *  10  10  *  *  *  *  *  *   *  10   *
+2   *  *  *  10  10  *  *  *  *  *  *   *   *   *
+3   *  *  *   *   *  *  *  *  *  9  9   *   *   *
+4   *  *  *   *   *  5  *  5  *  5  *   *   *   *
+5   *  *  *   *   *  *  4  *  4  *  *   *   *   *
+6   *  *  *   *   *  *  *  *  *  *  *   2   2   *
+7   *  *  *   *   *  *  *  *  2  *  *   *   *   *
+8   *  *  *   *   *  *  *  *  *  *  *   4   *   *
+9   *  *  *   *   *  *  *  *  8  *  8   *   *   *
+10  *  *  *   *   *  *  *  *  *  *  *  12   *   *
+11  *  *  *   *   *  *  *  *  *  *  *   *   *   2
+12  *  *  *   *   *  *  *  *  *  *  *   *   *  20
+13  *  *  *   *   *  *  *  *  *  *  *   *   *   *
+
+
+III. Verification des proprietes du graphe d'ordonnancement : 
+
+Detection de circuit : 
+
+Methode d'elimination des points d'entree: 
+Point d'entree : 0
+Sommets restants : 1 2 3 4 5 6 7 8 9 10 11 12 13 
+Point d'entree : 1
+Sommets restants : 2 3 4 5 6 7 8 9 10 11 12 13 
+Point d'entree : 2
+Sommets restants : 3 4 5 6 7 8 9 10 11 12 13 
+Point d'entree : 3
+Sommets restants : 4 5 6 7 8 9 10 11 12 13 
+Point d'entree : 4
+Sommets restants : 5 6 7 8 9 10 11 12 13 
+Point d'entree : 5
+Sommets restants : 6 7 8 9 10 11 12 13 
+Point d'entree : 6
+Sommets restants : 7 8 9 10 11 12 13 
+Point d'entree : 7
+Sommets restants : 8 9 10 11 12 13 
+Point d'entree : 9
+Sommets restants : 8 10 11 12 13 
+Point d'entree : 8
+Sommets restants : 10 11 12 13 
+Point d'entree : 10
+Sommets restants : 11 12 13 
+Point d'entree : 11
+Sommets restants : 12 13 
+Point d'entree : 12
+Sommets restants : 13 
+Point d'entree : 13
+
+Il n'y a plus aucun sommets restants
+
+Le graphe d'ordonnancement ne contient pas d'arcs a valeurs negatives.
+
+Le graphe d'ordonnancement ne contient pas de circuit.
+
+
+IV. Calcul du rang :
+
+Sommet 0, rang = 0
+Sommet 1, rang = 1
+Sommet 2, rang = 1
+Sommet 3, rang = 2
+Sommet 4, rang = 2
+Sommet 5, rang = 3
+Sommet 6, rang = 4
+Sommet 7, rang = 3
+Sommet 8, rang = 4
+Sommet 9, rang = 3
+Sommet 10, rang = 4
+Sommet 11, rang = 5
+Sommet 12, rang = 5
+Sommet 13, rang = 6
+
+
+ V. a) Calendrier au plus tot :
+
+Sommet 0, date au plus tôt = 0
+Sommet 1, date au plus tôt = 0
+Sommet 2, date au plus tôt = 0
+Sommet 3, date au plus tôt = 10
+Sommet 4, date au plus tôt = 10
+Sommet 5, date au plus tôt = 15
+Sommet 6, date au plus tôt = 19
+Sommet 7, date au plus tôt = 15
+Sommet 8, date au plus tôt = 27
+Sommet 9, date au plus tôt = 19
+Sommet 10, date au plus tôt = 27
+Sommet 11, date au plus tôt = 39
+Sommet 12, date au plus tôt = 21
+Sommet 13, date au plus tôt = 41
+
+
+ V. b) Calendrier au plus tard :
+
+Sommet 0, date au plus tard = 0
+Sommet 1, date au plus tard = 0
+Sommet 2, date au plus tard = 0
+Sommet 3, date au plus tard = 10
+Sommet 4, date au plus tard = 10
+Sommet 5, date au plus tard = 15
+Sommet 6, date au plus tard = 19
+Sommet 7, date au plus tard = 33
+Sommet 8, date au plus tard = 35
+Sommet 9, date au plus tard = 19
+Sommet 10, date au plus tard = 27
+Sommet 11, date au plus tard = 39
+Sommet 12, date au plus tard = 21
+Sommet 13, date au plus tard = 41
+
+
+ V. c) Calendrier des marges :
+
+Sommet 0, marge = 0
+Sommet 1, marge = 0
+Sommet 2, marge = 0
+Sommet 3, marge = 0
+Sommet 4, marge = 0
+Sommet 5, marge = 0
+Sommet 6, marge = 0
+Sommet 7, marge = 18
+Sommet 8, marge = 8
+Sommet 9, marge = 0
+Sommet 10, marge = 0
+Sommet 11, marge = 0
+Sommet 12, marge = 0
+Sommet 13, marge = 0
+
+
+ VI. Chemin(s) critique(s):
+
+0 -> 1 -> 3 -> 9 -> 10 -> 11 -> 13
+0 -> 2 -> 3 -> 9 -> 10 -> 11 -> 13
+0 -> 1 -> 4 -> 5 -> 6 -> 12 -> 13
+0 -> 2 -> 4 -> 5 -> 6 -> 12 -> 13
+
+##################################################
+
+Calculs sur le graphe 7: 
+
+I. Graphe d'ordonnancement : 
+
+Nombre de sommets : 12
+Nombre d'arcs : 16
+0 -> 4 = 0
+0 -> 6 = 0
+0 -> 7 = 0
+1 -> 9 = 1
+2 -> 11 = 2
+3 -> 9 = 3
+4 -> 1 = 4
+4 -> 5 = 4
+5 -> 8 = 5
+6 -> 3 = 6
+6 -> 10 = 6
+7 -> 2 = 7
+7 -> 8 = 7
+8 -> 9 = 8
+9 -> 11 = 9
+10 -> 1 = 10
+
+
+II. Creation de la matrice des valeurs 
+
+   0   1  2  3  4  5  6  7  8  9  10 11
+0   *   *  *  *  0  *  0  0  *  *  *  *
+1   *   *  *  *  *  *  *  *  *  1  *  *
+2   *   *  *  *  *  *  *  *  *  *  *  2
+3   *   *  *  *  *  *  *  *  *  3  *  *
+4   *   4  *  *  *  4  *  *  *  *  *  *
+5   *   *  *  *  *  *  *  *  5  *  *  *
+6   *   *  *  6  *  *  *  *  *  *  6  *
+7   *   *  7  *  *  *  *  *  7  *  *  *
+8   *   *  *  *  *  *  *  *  *  8  *  *
+9   *   *  *  *  *  *  *  *  *  *  *  9
+10  *  10  *  *  *  *  *  *  *  *  *  *
+11  *   *  *  *  *  *  *  *  *  *  *  *
+
+
+III. Verification des proprietes du graphe d'ordonnancement : 
+
+Detection de circuit : 
+
+Methode d'elimination des points d'entree: 
+Point d'entree : 0
+Sommets restants : 1 2 3 4 5 6 7 8 9 10 11 
+Point d'entree : 4
+Sommets restants : 1 2 3 5 6 7 8 9 10 11 
+Point d'entree : 5
+Sommets restants : 1 2 3 6 7 8 9 10 11 
+Point d'entree : 6
+Sommets restants : 1 2 3 7 8 9 10 11 
+Point d'entree : 3
+Sommets restants : 1 2 7 8 9 10 11 
+Point d'entree : 7
+Sommets restants : 1 2 8 9 10 11 
+Point d'entree : 2
+Sommets restants : 1 8 9 10 11 
+Point d'entree : 8
+Sommets restants : 1 9 10 11 
+Point d'entree : 10
+Sommets restants : 1 9 11 
+Point d'entree : 1
+Sommets restants : 9 11 
+Point d'entree : 9
+Sommets restants : 11 
+Point d'entree : 11
+
+Il n'y a plus aucun sommets restants
+
+Le graphe d'ordonnancement ne contient pas d'arcs a valeurs negatives.
+
+Le graphe d'ordonnancement ne contient pas de circuit.
+
+
+IV. Calcul du rang :
+
+Sommet 0, rang = 0
+Sommet 1, rang = 3
+Sommet 2, rang = 2
+Sommet 3, rang = 2
+Sommet 4, rang = 1
+Sommet 5, rang = 2
+Sommet 6, rang = 1
+Sommet 7, rang = 1
+Sommet 8, rang = 3
+Sommet 9, rang = 4
+Sommet 10, rang = 2
+Sommet 11, rang = 5
+
+
+ V. a) Calendrier au plus tot :
+
+Sommet 0, date au plus tôt = 0
+Sommet 1, date au plus tôt = 16
+Sommet 2, date au plus tôt = 7
+Sommet 3, date au plus tôt = 6
+Sommet 4, date au plus tôt = 0
+Sommet 5, date au plus tôt = 4
+Sommet 6, date au plus tôt = 0
+Sommet 7, date au plus tôt = 0
+Sommet 8, date au plus tôt = 9
+Sommet 9, date au plus tôt = 17
+Sommet 10, date au plus tôt = 6
+Sommet 11, date au plus tôt = 26
+
+
+ V. b) Calendrier au plus tard :
+
+Sommet 0, date au plus tard = 0
+Sommet 1, date au plus tard = 16
+Sommet 2, date au plus tard = 24
+Sommet 3, date au plus tard = 14
+Sommet 4, date au plus tard = 0
+Sommet 5, date au plus tard = 4
+Sommet 6, date au plus tard = 0
+Sommet 7, date au plus tard = 2
+Sommet 8, date au plus tard = 9
+Sommet 9, date au plus tard = 17
+Sommet 10, date au plus tard = 6
+Sommet 11, date au plus tard = 26
+
+
+ V. c) Calendrier des marges :
+
+Sommet 0, marge = 0
+Sommet 1, marge = 0
+Sommet 2, marge = 17
+Sommet 3, marge = 8
+Sommet 4, marge = 0
+Sommet 5, marge = 0
+Sommet 6, marge = 0
+Sommet 7, marge = 2
+Sommet 8, marge = 0
+Sommet 9, marge = 0
+Sommet 10, marge = 0
+Sommet 11, marge = 0
+
+
+ VI. Chemin(s) critique(s):
+
+0 -> 6 -> 10 -> 1 -> 9 -> 11
+0 -> 4 -> 5 -> 8 -> 9 -> 11
+
+##################################################
+
+Calculs sur le graphe 8: 
+
+I. Graphe d'ordonnancement : 
+
+Nombre de sommets : 12
+Nombre d'arcs : 18
+0 -> 4 = 0
+0 -> 5 = 0
+0 -> 6 = 0
+0 -> 7 = 0
+0 -> 10 = 0
+1 -> 9 = 1
+2 -> 9 = 2
+3 -> 9 = 3
+4 -> 1 = 4
+5 -> 1 = 5
+5 -> 8 = 5
+6 -> 3 = 6
+7 -> 2 = 7
+7 -> 8 = 7
+8 -> 9 = 9
+9 -> 11 = 9
+10 -> 1 = 10
+10 -> 3 = 10
+
+
+II. Creation de la matrice des valeurs 
+
+   0   1  2   3  4  5  6  7  8  9  10 11
+0   *   *  *   *  0  0  0  0  *  *  0  *
+1   *   *  *   *  *  *  *  *  *  1  *  *
+2   *   *  *   *  *  *  *  *  *  2  *  *
+3   *   *  *   *  *  *  *  *  *  3  *  *
+4   *   4  *   *  *  *  *  *  *  *  *  *
+5   *   5  *   *  *  *  *  *  5  *  *  *
+6   *   *  *   6  *  *  *  *  *  *  *  *
+7   *   *  7   *  *  *  *  *  7  *  *  *
+8   *   *  *   *  *  *  *  *  *  9  *  *
+9   *   *  *   *  *  *  *  *  *  *  *  9
+10  *  10  *  10  *  *  *  *  *  *  *  *
+11  *   *  *   *  *  *  *  *  *  *  *  *
+
+
+III. Verification des proprietes du graphe d'ordonnancement : 
+
+Detection de circuit : 
+
+Methode d'elimination des points d'entree: 
+Point d'entree : 0
+Sommets restants : 1 2 3 4 5 6 7 8 9 10 11 
+Point d'entree : 4
+Sommets restants : 1 2 3 5 6 7 8 9 10 11 
+Point d'entree : 5
+Sommets restants : 1 2 3 6 7 8 9 10 11 
+Point d'entree : 6
+Sommets restants : 1 2 3 7 8 9 10 11 
+Point d'entree : 7
+Sommets restants : 1 2 3 8 9 10 11 
+Point d'entree : 2
+Sommets restants : 1 3 8 9 10 11 
+Point d'entree : 8
+Sommets restants : 1 3 9 10 11 
+Point d'entree : 10
+Sommets restants : 1 3 9 11 
+Point d'entree : 1
+Sommets restants : 3 9 11 
+Point d'entree : 3
+Sommets restants : 9 11 
+Point d'entree : 9
+Sommets restants : 11 
+Point d'entree : 11
+
+Il n'y a plus aucun sommets restants
+
+Le graphe d'ordonnancement ne contient pas d'arcs a valeurs negatives.
+
+Le graphe d'ordonnancement ne contient pas de circuit.
+
+
+IV. Calcul du rang :
+
+Sommet 0, rang = 0
+Sommet 1, rang = 2
+Sommet 2, rang = 2
+Sommet 3, rang = 2
+Sommet 4, rang = 1
+Sommet 5, rang = 1
+Sommet 6, rang = 1
+Sommet 7, rang = 1
+Sommet 8, rang = 2
+Sommet 9, rang = 3
+Sommet 10, rang = 1
+Sommet 11, rang = 4
+
+
+ V. a) Calendrier au plus tot :
+
+Sommet 0, date au plus tôt = 0
+Sommet 1, date au plus tôt = 10
+Sommet 2, date au plus tôt = 7
+Sommet 3, date au plus tôt = 10
+Sommet 4, date au plus tôt = 0
+Sommet 5, date au plus tôt = 0
+Sommet 6, date au plus tôt = 0
+Sommet 7, date au plus tôt = 0
+Sommet 8, date au plus tôt = 7
+Sommet 9, date au plus tôt = 16
+Sommet 10, date au plus tôt = 0
+Sommet 11, date au plus tôt = 25
+
+
+ V. b) Calendrier au plus tard :
+
+Sommet 0, date au plus tard = 0
+Sommet 1, date au plus tard = 15
+Sommet 2, date au plus tard = 14
+Sommet 3, date au plus tard = 13
+Sommet 4, date au plus tard = 11
+Sommet 5, date au plus tard = 2
+Sommet 6, date au plus tard = 7
+Sommet 7, date au plus tard = 0
+Sommet 8, date au plus tard = 7
+Sommet 9, date au plus tard = 16
+Sommet 10, date au plus tard = 3
+Sommet 11, date au plus tard = 25
+
+
+ V. c) Calendrier des marges :
+
+Sommet 0, marge = 0
+Sommet 1, marge = 5
+Sommet 2, marge = 7
+Sommet 3, marge = 3
+Sommet 4, marge = 11
+Sommet 5, marge = 2
+Sommet 6, marge = 7
+Sommet 7, marge = 0
+Sommet 8, marge = 0
+Sommet 9, marge = 0
+Sommet 10, marge = 3
+Sommet 11, marge = 0
+
+
+ VI. Chemin(s) critique(s):
+
+0 -> 7 -> 8 -> 9 -> 11
+
+##################################################
+
+Calculs sur le graphe 9: 
+
+I. Graphe d'ordonnancement : 
+
+Nombre de sommets : 12
+Nombre d'arcs : 19
+0 -> 4 = 0
+0 -> 6 = 0
+0 -> 7 = 0
+0 -> 10 = 0
+1 -> 9 = 1
+2 -> 9 = 2
+3 -> 9 = 3
+4 -> 1 = 4
+4 -> 5 = 4
+5 -> 1 = 5
+5 -> 8 = 5
+6 -> 3 = 6
+7 -> 2 = 7
+7 -> 8 = 7
+8 -> 1 = 8
+8 -> 9 = 8
+9 -> 11 = 9
+10 -> 1 = 10
+10 -> 3 = 10
+
+
+II. Creation de la matrice des valeurs 
+
+   0   1  2   3  4  5  6  7  8  9  10 11
+0   *   *  *   *  0  *  0  0  *  *  0  *
+1   *   *  *   *  *  *  *  *  *  1  *  *
+2   *   *  *   *  *  *  *  *  *  2  *  *
+3   *   *  *   *  *  *  *  *  *  3  *  *
+4   *   4  *   *  *  4  *  *  *  *  *  *
+5   *   5  *   *  *  *  *  *  5  *  *  *
+6   *   *  *   6  *  *  *  *  *  *  *  *
+7   *   *  7   *  *  *  *  *  7  *  *  *
+8   *   8  *   *  *  *  *  *  *  8  *  *
+9   *   *  *   *  *  *  *  *  *  *  *  9
+10  *  10  *  10  *  *  *  *  *  *  *  *
+11  *   *  *   *  *  *  *  *  *  *  *  *
+
+
+III. Verification des proprietes du graphe d'ordonnancement : 
+
+Detection de circuit : 
+
+Methode d'elimination des points d'entree: 
+Point d'entree : 0
+Sommets restants : 1 2 3 4 5 6 7 8 9 10 11 
+Point d'entree : 4
+Sommets restants : 1 2 3 5 6 7 8 9 10 11 
+Point d'entree : 5
+Sommets restants : 1 2 3 6 7 8 9 10 11 
+Point d'entree : 6
+Sommets restants : 1 2 3 7 8 9 10 11 
+Point d'entree : 7
+Sommets restants : 1 2 3 8 9 10 11 
+Point d'entree : 2
+Sommets restants : 1 3 8 9 10 11 
+Point d'entree : 8
+Sommets restants : 1 3 9 10 11 
+Point d'entree : 10
+Sommets restants : 1 3 9 11 
+Point d'entree : 1
+Sommets restants : 3 9 11 
+Point d'entree : 3
+Sommets restants : 9 11 
+Point d'entree : 9
+Sommets restants : 11 
+Point d'entree : 11
+
+Il n'y a plus aucun sommets restants
+
+Le graphe d'ordonnancement ne contient pas d'arcs a valeurs negatives.
+
+Le graphe d'ordonnancement ne contient pas de circuit.
+
+
+IV. Calcul du rang :
+
+Sommet 0, rang = 0
+Sommet 1, rang = 4
+Sommet 2, rang = 2
+Sommet 3, rang = 2
+Sommet 4, rang = 1
+Sommet 5, rang = 2
+Sommet 6, rang = 1
+Sommet 7, rang = 1
+Sommet 8, rang = 3
+Sommet 9, rang = 5
+Sommet 10, rang = 1
+Sommet 11, rang = 6
+
+
+ V. a) Calendrier au plus tot :
+
+Sommet 0, date au plus tôt = 0
+Sommet 1, date au plus tôt = 17
+Sommet 2, date au plus tôt = 7
+Sommet 3, date au plus tôt = 10
+Sommet 4, date au plus tôt = 0
+Sommet 5, date au plus tôt = 4
+Sommet 6, date au plus tôt = 0
+Sommet 7, date au plus tôt = 0
+Sommet 8, date au plus tôt = 9
+Sommet 9, date au plus tôt = 18
+Sommet 10, date au plus tôt = 0
+Sommet 11, date au plus tôt = 27
+
+
+ V. b) Calendrier au plus tard :
+
+Sommet 0, date au plus tard = 0
+Sommet 1, date au plus tard = 17
+Sommet 2, date au plus tard = 16
+Sommet 3, date au plus tard = 15
+Sommet 4, date au plus tard = 0
+Sommet 5, date au plus tard = 4
+Sommet 6, date au plus tard = 9
+Sommet 7, date au plus tard = 2
+Sommet 8, date au plus tard = 9
+Sommet 9, date au plus tard = 18
+Sommet 10, date au plus tard = 5
+Sommet 11, date au plus tard = 27
+
+
+ V. c) Calendrier des marges :
+
+Sommet 0, marge = 0
+Sommet 1, marge = 0
+Sommet 2, marge = 9
+Sommet 3, marge = 5
+Sommet 4, marge = 0
+Sommet 5, marge = 0
+Sommet 6, marge = 9
+Sommet 7, marge = 2
+Sommet 8, marge = 0
+Sommet 9, marge = 0
+Sommet 10, marge = 5
+Sommet 11, marge = 0
+
+
+ VI. Chemin(s) critique(s):
+
+0 -> 4 -> 5 -> 8 -> 1 -> 9 -> 11
+
+##################################################
+
+Calculs sur le graphe 10: 
+
+I. Graphe d'ordonnancement : 
+
+Nombre de sommets : 10
+Nombre d'arcs : 16
+0 -> 1 = 0
+1 -> 2 = 2
+1 -> 4 = 2
+1 -> 5 = 2
+2 -> 3 = 3
+2 -> 4 = 3
+2 -> 8 = 3
+3 -> 7 = 5
+4 -> 5 = 6
+4 -> 6 = 6
+4 -> 8 = 6
+5 -> 6 = 2
+5 -> 7 = 2
+6 -> 9 = 1
+7 -> 8 = 6
+8 -> 9 = 1
+
+
+II. Creation de la matrice des valeurs 
+
+   0  1  2  3  4  5  6  7  8  9
+0  *  0  *  *  *  *  *  *  *  *
+1  *  *  2  *  2  2  *  *  *  *
+2  *  *  *  3  3  *  *  *  3  *
+3  *  *  *  *  *  *  *  5  *  *
+4  *  *  *  *  *  6  6  *  6  *
+5  *  *  *  *  *  *  2  2  *  *
+6  *  *  *  *  *  *  *  *  *  1
+7  *  *  *  *  *  *  *  *  6  *
+8  *  *  *  *  *  *  *  *  *  1
+9  *  *  *  *  *  *  *  *  *  *
+
+
+III. Verification des proprietes du graphe d'ordonnancement : 
+
+Detection de circuit : 
+
+Methode d'elimination des points d'entree: 
+Point d'entree : 0
+Sommets restants : 1 2 3 4 5 6 7 8 9 
+Point d'entree : 1
+Sommets restants : 2 3 4 5 6 7 8 9 
+Point d'entree : 2
+Sommets restants : 3 4 5 6 7 8 9 
+Point d'entree : 3
+Sommets restants : 4 5 6 7 8 9 
+Point d'entree : 4
+Sommets restants : 5 6 7 8 9 
+Point d'entree : 5
+Sommets restants : 6 7 8 9 
+Point d'entree : 6
+Sommets restants : 7 8 9 
+Point d'entree : 7
+Sommets restants : 8 9 
+Point d'entree : 8
+Sommets restants : 9 
+Point d'entree : 9
+
+Il n'y a plus aucun sommets restants
+
+Le graphe d'ordonnancement ne contient pas d'arcs a valeurs negatives.
+
+Le graphe d'ordonnancement ne contient pas de circuit.
+
+
+IV. Calcul du rang :
+
+Sommet 0, rang = 0
+Sommet 1, rang = 1
+Sommet 2, rang = 2
+Sommet 3, rang = 3
+Sommet 4, rang = 3
+Sommet 5, rang = 4
+Sommet 6, rang = 5
+Sommet 7, rang = 5
+Sommet 8, rang = 6
+Sommet 9, rang = 7
+
+
+ V. a) Calendrier au plus tot :
+
+Sommet 0, date au plus tôt = 0
+Sommet 1, date au plus tôt = 0
+Sommet 2, date au plus tôt = 2
+Sommet 3, date au plus tôt = 5
+Sommet 4, date au plus tôt = 5
+Sommet 5, date au plus tôt = 11
+Sommet 6, date au plus tôt = 13
+Sommet 7, date au plus tôt = 13
+Sommet 8, date au plus tôt = 19
+Sommet 9, date au plus tôt = 20
+
+
+ V. b) Calendrier au plus tard :
+
+Sommet 0, date au plus tard = 0
+Sommet 1, date au plus tard = 0
+Sommet 2, date au plus tard = 2
+Sommet 3, date au plus tard = 8
+Sommet 4, date au plus tard = 5
+Sommet 5, date au plus tard = 11
+Sommet 6, date au plus tard = 19
+Sommet 7, date au plus tard = 13
+Sommet 8, date au plus tard = 19
+Sommet 9, date au plus tard = 20
+
+
+ V. c) Calendrier des marges :
+
+Sommet 0, marge = 0
+Sommet 1, marge = 0
+Sommet 2, marge = 0
+Sommet 3, marge = 3
+Sommet 4, marge = 0
+Sommet 5, marge = 0
+Sommet 6, marge = 6
+Sommet 7, marge = 0
+Sommet 8, marge = 0
+Sommet 9, marge = 0
+
+
+ VI. Chemin(s) critique(s):
+
+0 -> 1 -> 2 -> 4 -> 5 -> 7 -> 8 -> 9
+
+##################################################
+
+Calculs sur le graphe 11: 
+
+I. Graphe d'ordonnancement : 
+
+Nombre de sommets : 10
+Nombre d'arcs : 16
+0 -> 1 = 0
+1 -> 2 = 1
+1 -> 4 = 1
+1 -> 5 = 1
+2 -> 3 = 1
+2 -> 8 = 1
+3 -> 7 = 4
+4 -> 2 = 2
+4 -> 6 = 2
+4 -> 8 = 2
+5 -> 4 = 5
+5 -> 6 = 5
+5 -> 7 = 5
+6 -> 8 = 6
+7 -> 8 = 3
+8 -> 9 = 0
+
+
+II. Creation de la matrice des valeurs 
+
+   0  1  2  3  4  5  6  7  8  9
+0  *  0  *  *  *  *  *  *  *  *
+1  *  *  1  *  1  1  *  *  *  *
+2  *  *  *  1  *  *  *  *  1  *
+3  *  *  *  *  *  *  *  4  *  *
+4  *  *  2  *  *  *  2  *  2  *
+5  *  *  *  *  5  *  5  5  *  *
+6  *  *  *  *  *  *  *  *  6  *
+7  *  *  *  *  *  *  *  *  3  *
+8  *  *  *  *  *  *  *  *  *  0
+9  *  *  *  *  *  *  *  *  *  *
+
+
+III. Verification des proprietes du graphe d'ordonnancement : 
+
+Detection de circuit : 
+
+Methode d'elimination des points d'entree: 
+Point d'entree : 0
+Sommets restants : 1 2 3 4 5 6 7 8 9 
+Point d'entree : 1
+Sommets restants : 2 3 4 5 6 7 8 9 
+Point d'entree : 5
+Sommets restants : 2 3 4 6 7 8 9 
+Point d'entree : 4
+Sommets restants : 2 3 6 7 8 9 
+Point d'entree : 2
+Sommets restants : 3 6 7 8 9 
+Point d'entree : 3
+Sommets restants : 6 7 8 9 
+Point d'entree : 6
+Sommets restants : 7 8 9 
+Point d'entree : 7
+Sommets restants : 8 9 
+Point d'entree : 8
+Sommets restants : 9 
+Point d'entree : 9
+
+Il n'y a plus aucun sommets restants
+
+Le graphe d'ordonnancement ne contient pas d'arcs a valeurs negatives.
+
+Le graphe d'ordonnancement ne contient pas de circuit.
+
+
+IV. Calcul du rang :
+
+Sommet 0, rang = 0
+Sommet 1, rang = 1
+Sommet 2, rang = 4
+Sommet 3, rang = 5
+Sommet 4, rang = 3
+Sommet 5, rang = 2
+Sommet 6, rang = 4
+Sommet 7, rang = 6
+Sommet 8, rang = 7
+Sommet 9, rang = 8
+
+
+ V. a) Calendrier au plus tot :
+
+Sommet 0, date au plus tôt = 0
+Sommet 1, date au plus tôt = 0
+Sommet 2, date au plus tôt = 8
+Sommet 3, date au plus tôt = 9
+Sommet 4, date au plus tôt = 6
+Sommet 5, date au plus tôt = 1
+Sommet 6, date au plus tôt = 8
+Sommet 7, date au plus tôt = 13
+Sommet 8, date au plus tôt = 16
+Sommet 9, date au plus tôt = 16
+
+
+ V. b) Calendrier au plus tard :
+
+Sommet 0, date au plus tard = 0
+Sommet 1, date au plus tard = 0
+Sommet 2, date au plus tard = 8
+Sommet 3, date au plus tard = 9
+Sommet 4, date au plus tard = 6
+Sommet 5, date au plus tard = 1
+Sommet 6, date au plus tard = 10
+Sommet 7, date au plus tard = 13
+Sommet 8, date au plus tard = 16
+Sommet 9, date au plus tard = 16
+
+
+ V. c) Calendrier des marges :
+
+Sommet 0, marge = 0
+Sommet 1, marge = 0
+Sommet 2, marge = 0
+Sommet 3, marge = 0
+Sommet 4, marge = 0
+Sommet 5, marge = 0
+Sommet 6, marge = 2
+Sommet 7, marge = 0
+Sommet 8, marge = 0
+Sommet 9, marge = 0
+
+
+ VI. Chemin(s) critique(s):
+
+0 -> 1 -> 5 -> 4 -> 2 -> 3 -> 7 -> 8 -> 9
+
+##################################################
+
+Calculs sur le graphe 12: 
+
+I. Graphe d'ordonnancement : 
+
+Nombre de sommets : 14
+Nombre d'arcs : 23
+0 -> 1 = 0
+0 -> 2 = 0
+1 -> 3 = 10
+1 -> 4 = 10
+1 -> 12 = 10
+2 -> 3 = 10
+2 -> 4 = 10
+3 -> 9 = 9
+4 -> 5 = 5
+4 -> 7 = 5
+4 -> 9 = 5
+5 -> 6 = 4
+5 -> 8 = 4
+6 -> 11 = 2
+6 -> 12 = 2
+7 -> 8 = 2
+8 -> 11 = 4
+9 -> 8 = 8
+9 -> 10 = 8
+10 -> 3 = 12
+10 -> 11 = 12
+11 -> 13 = 2
+12 -> 13 = 20
+
+
+II. Creation de la matrice des valeurs 
+
+   0  1  2   3   4  5  6  7  8  9  10  11  12  13
+0   *  0  0   *   *  *  *  *  *  *  *   *   *   *
+1   *  *  *  10  10  *  *  *  *  *  *   *  10   *
+2   *  *  *  10  10  *  *  *  *  *  *   *   *   *
+3   *  *  *   *   *  *  *  *  *  9  *   *   *   *
+4   *  *  *   *   *  5  *  5  *  5  *   *   *   *
+5   *  *  *   *   *  *  4  *  4  *  *   *   *   *
+6   *  *  *   *   *  *  *  *  *  *  *   2   2   *
+7   *  *  *   *   *  *  *  *  2  *  *   *   *   *
+8   *  *  *   *   *  *  *  *  *  *  *   4   *   *
+9   *  *  *   *   *  *  *  *  8  *  8   *   *   *
+10  *  *  *  12   *  *  *  *  *  *  *  12   *   *
+11  *  *  *   *   *  *  *  *  *  *  *   *   *   2
+12  *  *  *   *   *  *  *  *  *  *  *   *   *  20
+13  *  *  *   *   *  *  *  *  *  *  *   *   *   *
+
+
+III. Verification des proprietes du graphe d'ordonnancement : 
+
+Detection de circuit : 
+
+Methode d'elimination des points d'entree: 
+Point d'entree : 0
+Sommets restants : 1 2 3 4 5 6 7 8 9 10 11 12 13 
+Point d'entree : 1
+Sommets restants : 2 3 4 5 6 7 8 9 10 11 12 13 
+Point d'entree : 2
+Sommets restants : 3 4 5 6 7 8 9 10 11 12 13 
+Point d'entree : 4
+Sommets restants : 3 5 6 7 8 9 10 11 12 13 
+Point d'entree : 5
+Sommets restants : 3 6 7 8 9 10 11 12 13 
+Point d'entree : 6
+Sommets restants : 3 7 8 9 10 11 12 13 
+Point d'entree : 7
+Sommets restants : 3 8 9 10 11 12 13 
+Point d'entree : 12
+Sommets restants : 3 8 9 10 11 13 
+
+Le graphe d'ordonnancement ne contient pas d'arcs a valeurs negatives.
+
+Le graphe d'ordonnancement contient un circuit.
+
+##################################################
+
+Calculs sur le graphe 13: 
+
+I. Graphe d'ordonnancement : 
+
+Nombre de sommets : 6
+Nombre d'arcs : 7
+0 -> 1 = 0
+0 -> 3 = 0
+1 -> 2 = 9
+2 -> 5 = 2
+3 -> 2 = 4
+3 -> 4 = 4
+4 -> 5 = 7
+
+
+II. Creation de la matrice des valeurs 
+
+   0  1  2  3  4  5
+0  *  0  *  0  *  *
+1  *  *  9  *  *  *
+2  *  *  *  *  *  2
+3  *  *  4  *  4  *
+4  *  *  *  *  *  7
+5  *  *  *  *  *  *
+
+
+III. Verification des proprietes du graphe d'ordonnancement : 
+
+Detection de circuit : 
+
+Methode d'elimination des points d'entree: 
+Point d'entree : 0
+Sommets restants : 1 2 3 4 5 
+Point d'entree : 1
+Sommets restants : 2 3 4 5 
+Point d'entree : 3
+Sommets restants : 2 4 5 
+Point d'entree : 2
+Sommets restants : 4 5 
+Point d'entree : 4
+Sommets restants : 5 
+Point d'entree : 5
+
+Il n'y a plus aucun sommets restants
+
+Le graphe d'ordonnancement ne contient pas d'arcs a valeurs negatives.
+
+Le graphe d'ordonnancement ne contient pas de circuit.
+
+
+IV. Calcul du rang :
+
+Sommet 0, rang = 0
+Sommet 1, rang = 1
+Sommet 2, rang = 2
+Sommet 3, rang = 1
+Sommet 4, rang = 2
+Sommet 5, rang = 3
+
+
+ V. a) Calendrier au plus tot :
+
+Sommet 0, date au plus tôt = 0
+Sommet 1, date au plus tôt = 0
+Sommet 2, date au plus tôt = 9
+Sommet 3, date au plus tôt = 0
+Sommet 4, date au plus tôt = 4
+Sommet 5, date au plus tôt = 11
+
+
+ V. b) Calendrier au plus tard :
+
+Sommet 0, date au plus tard = 0
+Sommet 1, date au plus tard = 0
+Sommet 2, date au plus tard = 9
+Sommet 3, date au plus tard = 0
+Sommet 4, date au plus tard = 4
+Sommet 5, date au plus tard = 11
+
+
+ V. c) Calendrier des marges :
+
+Sommet 0, marge = 0
+Sommet 1, marge = 0
+Sommet 2, marge = 0
+Sommet 3, marge = 0
+Sommet 4, marge = 0
+Sommet 5, marge = 0
+
+
+ VI. Chemin(s) critique(s):
+
+0 -> 1 -> 2 -> 5
+0 -> 3 -> 4 -> 5
+
+##################################################
+
+Calculs sur le graphe 14: 
+
+I. Graphe d'ordonnancement : 
+
+Nombre de sommets : 6
+Nombre d'arcs : 7
+0 -> 1 = 0
+0 -> 2 = 0
+1 -> 3 = 3
+2 -> 3 = 2
+2 -> 4 = 2
+3 -> 5 = 4
+4 -> 3 = 1
+
+
+II. Creation de la matrice des valeurs 
+
+   0  1  2  3  4  5
+0  *  0  0  *  *  *
+1  *  *  *  3  *  *
+2  *  *  *  2  2  *
+3  *  *  *  *  *  4
+4  *  *  *  1  *  *
+5  *  *  *  *  *  *
+
+
+III. Verification des proprietes du graphe d'ordonnancement : 
+
+Detection de circuit : 
+
+Methode d'elimination des points d'entree: 
+Point d'entree : 0
+Sommets restants : 1 2 3 4 5 
+Point d'entree : 1
+Sommets restants : 2 3 4 5 
+Point d'entree : 2
+Sommets restants : 3 4 5 
+Point d'entree : 4
+Sommets restants : 3 5 
+Point d'entree : 3
+Sommets restants : 5 
+Point d'entree : 5
+
+Il n'y a plus aucun sommets restants
+
+Le graphe d'ordonnancement ne contient pas d'arcs a valeurs negatives.
+
+Le graphe d'ordonnancement ne contient pas de circuit.
+
+
+IV. Calcul du rang :
+
+Sommet 0, rang = 0
+Sommet 1, rang = 1
+Sommet 2, rang = 1
+Sommet 3, rang = 3
+Sommet 4, rang = 2
+Sommet 5, rang = 4
+
+
+ V. a) Calendrier au plus tot :
+
+Sommet 0, date au plus tôt = 0
+Sommet 1, date au plus tôt = 0
+Sommet 2, date au plus tôt = 0
+Sommet 3, date au plus tôt = 3
+Sommet 4, date au plus tôt = 2
+Sommet 5, date au plus tôt = 7
+
+
+ V. b) Calendrier au plus tard :
+
+Sommet 0, date au plus tard = 0
+Sommet 1, date au plus tard = 0
+Sommet 2, date au plus tard = 0
+Sommet 3, date au plus tard = 3
+Sommet 4, date au plus tard = 2
+Sommet 5, date au plus tard = 7
+
+
+ V. c) Calendrier des marges :
+
+Sommet 0, marge = 0
+Sommet 1, marge = 0
+Sommet 2, marge = 0
+Sommet 3, marge = 0
+Sommet 4, marge = 0
+Sommet 5, marge = 0
+
+
+ VI. Chemin(s) critique(s):
+
+0 -> 1 -> 3 -> 5
+0 -> 2 -> 4 -> 3 -> 5
