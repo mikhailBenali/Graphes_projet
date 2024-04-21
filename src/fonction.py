@@ -203,57 +203,121 @@ def calculer_rangs(matrice,pred):
 def afficher_rangs(rangs):
     with open("traces.txt", "a") as f:
         print("\n IV. Calcul du rang :\n")
-        f.write("\nIV. Calcul du rang :\n\n")
+        f.write("\n\nIV. Calcul du rang :\n\n")
         for i, rang in enumerate(rangs):
             print(f"Sommet {i}, rang = {rang}")
             f.write(f"Sommet {i}, rang = {rang}\n")
 
 # ETAPE 5 : Calcul des dates au plus tôt/tard et marge
 
-def calendrier_plus_tot(rangs,predecesseurs,duree) :
-    print("\n V. a) Calendrier au plus tot :\n")
-    date_au_plus_tot=[0]*len(rangs)
-    for i in range(max(rangs)+1) :
-        for j in range(len(rangs)) :
-            if j==0 :
-                date_au_plus_tot[j]=0
-            else :
-                if rangs[j]==i :
-                        for k in predecesseurs[j]:
-                            #k = prédecesseurs de j
-                            if (date_au_plus_tot[j] <= date_au_plus_tot[k]+duree[k]) :
-                                date_au_plus_tot[j] = date_au_plus_tot[k]+duree[k]
-    for i, date in enumerate(date_au_plus_tot):
-        print(f"Sommet {i}, date au plus tôt = {date}")
-    return(date_au_plus_tot)
+def calendrier_plus_tot(rangs, predecesseurs, duree):
+    print("\n\n V. a) Calendrier au plus tot :\n")
+    date_au_plus_tot = [0] * len(rangs)
+    pred_date_plus_tot = {}  # Dictionnaire pour stocker les prédécesseurs à l'origine de chaque date au plus tôt
 
-def calendrier_plus_tard(rangs,successeurs,duree,date_plus_tot) :
-    print("\n V. b) Calendrier au plus tard :\n")
-    date_au_plus_tard=[9999]*len(rangs)
-    for i in range(max(rangs)+1) :
-        i = max(rangs)-i
-        for j in range(len(rangs)) :
-            j= len(rangs)-j-1
-            if j==len(rangs)-1 :
-                date_au_plus_tard[j]=date_plus_tot[-1]
-            else :
-                if rangs[j]==i :
-                        for k in successeurs[j]:
-                            #k = successeurs de j
-                            if (date_au_plus_tard[j] >= date_au_plus_tard[k]-duree[j]) :
-                                date_au_plus_tard[j] = date_au_plus_tard[k]-duree[j]
-    for i, date in enumerate(date_au_plus_tard):
-        print(f"Sommet {i}, date au plus tard = {date}")
+    for i in range(max(rangs) + 1):
+        for j in range(len(rangs)):
+            if j == 0:
+                date_au_plus_tot[j] = 0
+            elif rangs[j] == i:
+                for k in predecesseurs[j]:
+                    if date_au_plus_tot[j] <= date_au_plus_tot[k] + duree[k]:
+                        date_au_plus_tot[j] = date_au_plus_tot[k] + duree[k]
+                        if j in pred_date_plus_tot:
+                            pred_date_plus_tot[j].append(k)  # Ajouter le prédécesseur à la liste existante
+                        else:
+                            pred_date_plus_tot[j] = [k]  # Créer une nouvelle liste pour les prédécesseurs
 
-    return(date_au_plus_tard)
+    with open("traces.txt", "a") as f:
+        f.write("\n\n V. a) Calendrier au plus tot :\n")
 
-def marge(date_plus_tot,date_plus_tard):
-    print("\n V. c) Calendrier au plus tot :\n")
-    marge=[0]*len(date_plus_tard)
+        for i, date in enumerate(date_au_plus_tot):
+            print(f"Sommet {i}, date au plus tôt = {date}")
+            f.write(f"\nSommet {i}, date au plus tôt = {date}")
+
+    return date_au_plus_tot, pred_date_plus_tot
+
+
+def calendrier_plus_tard(rangs, successeurs, duree, date_plus_tot):
+    print("\n\n V. b) Calendrier au plus tard :\n")
+    date_au_plus_tard = [9999] * len(rangs)
+    pred_date_plus_tard = {}  # Dictionnaire pour stocker les prédécesseurs à l'origine de chaque date au plus tard
+
+    for i in range(max(rangs) + 1):
+        i = max(rangs) - i
+        for j in range(len(rangs)):
+            j = len(rangs) - j - 1
+            if j == len(rangs) - 1:
+                date_au_plus_tard[j] = date_plus_tot[-1]
+            elif rangs[j] == i:
+                for k in successeurs[j]:
+                    if date_au_plus_tard[j] >= date_au_plus_tard[k] - duree[j]:
+                        date_au_plus_tard[j] = date_au_plus_tard[k] - duree[j]
+                        if j in pred_date_plus_tard:
+                            pred_date_plus_tard[j].append(k)  # Ajouter le prédécesseur à la liste existante
+                        else:
+                            pred_date_plus_tard[j] = [k]  # Créer une nouvelle liste pour les prédécesseurs
+
+    with open("traces.txt", "a") as f:
+        f.write("\n\n\n V. b) Calendrier au plus tard :\n")
+
+        for i, date in enumerate(date_au_plus_tard):
+            print(f"Sommet {i}, date au plus tard = {date}")
+            f.write(f"\nSommet {i}, date au plus tard = {date}")
+
+    return date_au_plus_tard, pred_date_plus_tard
+
+
+
+def marge(date_plus_tot, date_plus_tard):
+
+    print("\n\n V. c) Calendrier des marges :\n")
+    marge = [0] * len(date_plus_tard)
     for i in range(len(date_plus_tard)):
-        marge[i]=date_plus_tard[i]-date_plus_tot[i]
-    for i, marge in enumerate(marge):
-        print(f"Sommet {i}, marge = {marge}")
+        marge[i] = date_plus_tard[i] - date_plus_tot[i]
+
+    with open("traces.txt", "a") as f:
+        f.write("\n\n\n V. c) Calendrier des marges :\n")
+
+        for i, marge_val in enumerate(marge):
+            print(f"Sommet {i}, marge = {marge_val}")
+            f.write(f"\nSommet {i}, marge = {marge_val}")
+
+def chemin_critique_recursive(sommet, pred_date_plus_tot, chemin_actuel, chemins_critiques):
+    chemin_actuel.append(sommet)
+    if sommet not in pred_date_plus_tot:
+        chemins_critiques.append(chemin_actuel.copy())
+    else:
+        for pred in pred_date_plus_tot[sommet]:
+            chemin_critique_recursive(pred, pred_date_plus_tot, chemin_actuel, chemins_critiques)
+    chemin_actuel.pop()
+
+
+def chemin_critique(pred_date_plus_tot,date_plus_tot, duree):
+    chemins_critiques = []
+
+    for sommet in pred_date_plus_tot.keys():
+        if sommet not in pred_date_plus_tot.values():
+            chemin_critique_recursive(sommet, pred_date_plus_tot, [], chemins_critiques)
+    with open("traces.txt", "a") as f:
+        f.write("\n\n\n VI. Chemin(s) critique(s):\n\n")
+        print("\n\n VI. Chemin(s) critique(s):\n")
+
+        for chemin in chemins_critiques:
+            if chemin[0] == len(date_plus_tot) - 1:
+                if somme_durees_sommets(chemin, duree) == date_plus_tot[len(date_plus_tot) - 1]:
+                    inverse_chemin = list(reversed(chemin))
+                    format_chemin = ' -> '.join(map(str, inverse_chemin))
+                    print(format_chemin)
+                    f.write(format_chemin+"\n")
+
+    return chemins_critiques
+
+def somme_durees_sommets(liste_sommets, duree):
+    somme_durees = 0
+    for sommet in liste_sommets:
+        somme_durees += duree[sommet]
+    return somme_durees
 
 def decoration_affichage(message):
     print("\n" + "#"*50 + "\n")
