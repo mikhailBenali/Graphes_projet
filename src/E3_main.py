@@ -1,4 +1,4 @@
-from fonction import *
+from E3_fonction import *
 
 while True:
     decoration_affichage("MENU PRINCIPAL :")
