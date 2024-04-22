@@ -271,7 +271,7 @@ def calendrier_plus_tard(rangs, successeurs, duree, date_plus_tot):
 
 def marge(date_plus_tot, date_plus_tard):
 
-    print("\n\n V. c) Calendrier des marges :\n")
+    print("\n\n V. c) Marges des sommetes:\n")
     marge = [0] * len(date_plus_tard)
     for i in range(len(date_plus_tard)):
         marge[i] = date_plus_tard[i] - date_plus_tot[i]
