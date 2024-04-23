@@ -97,15 +97,8 @@ def afficher_matrice(matrice):
 
 # ETAPE 3 : Vérification des propriétés pour valider le graphe d'ordonnancement
 
-def verifier_arcs_negatifs(matrice):
-    # Renvoi False s'il y a des arcs à valeurs négatives, True sinon
-    # Vérifier s'il y a des arcs à valeurs négatives
-    for i in range(len(matrice)):
-        for j in range(len(matrice)):
-            if type(matrice[i][j]) == int: # Si l'arc contient un nombre
-                if matrice[i][j] < 0: # Si la valeur de l'arc est négative
-                    return False
-    return True
+def verifier_arcs_negatifs(duree):
+    return not any(d < 0 for d in duree)
 
 def verifier_circuit(matrice, affichage = False):
     with open("E3_traces.txt", "a") as f:
@@ -160,11 +153,11 @@ def verifier_circuit(matrice, affichage = False):
         
         return copie_matrice
 
-def verifier_graphe(matrice):
+def verifier_graphe(matrice,duree):
     with open("E3_traces.txt", "a") as f:
         print("\nIII. Vérification des propriétés du graphe d'ordonnancement : \n")
         
-        if not verifier_arcs_negatifs(matrice):
+        if not verifier_arcs_negatifs(duree):
             print("Le graphe d'ordonnancement contient des arcs à valeurs négatives.")
             f.write("\nLe graphe d'ordonnancement contient des arcs a valeurs negatives.\n")
         else:
@@ -178,7 +171,7 @@ def verifier_graphe(matrice):
             print("Le graphe d'ordonnancement ne contient pas de circuit.")
             f.write("\nLe graphe d'ordonnancement ne contient pas de circuit.\n")
         
-        if verifier_arcs_negatifs(matrice) and verifier_circuit(matrice):
+        if verifier_arcs_negatifs(duree) and verifier_circuit(matrice):
             return True # On peut continuer
 
 # ETAPE 4 : Calcul des rangs des sommets à partir de la matrice des valeurs

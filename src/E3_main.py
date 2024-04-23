@@ -22,7 +22,7 @@ while True:
             afficher_graphe(sommets, successeurs, duree)
             matrice_valeurs = creer_matrice_valeurs(sommets, successeurs, duree)
             afficher_matrice(matrice_valeurs)
-            if verifier_graphe(matrice_valeurs):
+            if verifier_graphe(matrice_valeurs,duree):
                 rangs = calculer_rangs(matrice_valeurs,predecesseurs)
                 afficher_rangs(rangs)
                 date_plus_tot, pred_date_plus_tot = calendrier_plus_tot(rangs,predecesseurs,duree)
