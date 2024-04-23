@@ -1,5 +1,8 @@
 from E3_fonction import *
 
+with open("traces.txt", "w") as f:
+    f.write("")
+
 while True:
     decoration_affichage("MENU PRINCIPAL :")
     print("1. Tester un tableau de contrainte")
