@@ -65,7 +65,7 @@ def afficher_graphe(sommets, successeurs, duree):
 
     # TRACE
 
-    with open("traces.txt", "a") as f:
+    with open("E3_traces.txt", "a") as f:
         f.write("\nI. Graphe d'ordonnancement : \n\n")
         f.write(f"Nombre de sommets : {nb_sommets}\n")
         f.write(f"Nombre d'arcs : {nb_arcs}\n")
@@ -90,7 +90,7 @@ def creer_matrice_valeurs(sommets, successeurs, duree):
 
 def afficher_matrice(matrice):
     print(pd.DataFrame(matrice))
-    with open("traces.txt", "a") as f:
+    with open("E3_traces.txt", "a") as f:
         f.write("II. Creation de la matrice des valeurs \n\n")
         f.write(pd.DataFrame(matrice).to_string())
         f.write("\n\n")
@@ -108,7 +108,7 @@ def verifier_arcs_negatifs(matrice):
     return True
 
 def verifier_circuit(matrice, affichage = False):
-    with open("traces.txt", "a") as f:
+    with open("E3_traces.txt", "a") as f:
         if affichage:
             f.write("\nIII. Verification des proprietes du graphe d'ordonnancement : \n\n")
         
@@ -161,7 +161,7 @@ def verifier_circuit(matrice, affichage = False):
         return copie_matrice
 
 def verifier_graphe(matrice):
-    with open("traces.txt", "a") as f:
+    with open("E3_traces.txt", "a") as f:
         print("\nIII. Vérification des propriétés du graphe d'ordonnancement : \n")
         
         if not verifier_arcs_negatifs(matrice):
@@ -201,7 +201,7 @@ def calculer_rangs(matrice,pred):
         return rangs
 
 def afficher_rangs(rangs):
-    with open("traces.txt", "a") as f:
+    with open("E3_traces.txt", "a") as f:
         print("\n IV. Calcul du rang :\n")
         f.write("\n\nIV. Calcul du rang :\n\n")
         for i, rang in enumerate(rangs):
@@ -228,7 +228,7 @@ def calendrier_plus_tot(rangs, predecesseurs, duree):
                         else:
                             pred_date_plus_tot[j] = [k]  # Créer une nouvelle liste pour les prédécesseurs
 
-    with open("traces.txt", "a") as f:
+    with open("E3_traces.txt", "a") as f:
         f.write("\n\n V. a) Calendrier au plus tot :\n")
 
         for i, date in enumerate(date_au_plus_tot):
@@ -258,7 +258,7 @@ def calendrier_plus_tard(rangs, successeurs, duree, date_plus_tot):
                         else:
                             pred_date_plus_tard[j] = [k]  # Créer une nouvelle liste pour les prédécesseurs
 
-    with open("traces.txt", "a") as f:
+    with open("E3_traces.txt", "a") as f:
         f.write("\n\n\n V. b) Calendrier au plus tard :\n")
 
         for i, date in enumerate(date_au_plus_tard):
@@ -276,7 +276,7 @@ def marge(date_plus_tot, date_plus_tard):
     for i in range(len(date_plus_tard)):
         marge[i] = date_plus_tard[i] - date_plus_tot[i]
 
-    with open("traces.txt", "a") as f:
+    with open("E3_traces.txt", "a") as f:
         f.write("\n\n\n V. c) Calendrier des marges :\n")
 
         for i, marge_val in enumerate(marge):
@@ -299,7 +299,7 @@ def chemin_critique(pred_date_plus_tot,date_plus_tot, duree):
     for sommet in pred_date_plus_tot.keys():
         if sommet not in pred_date_plus_tot.values():
             chemin_critique_recursive(sommet, pred_date_plus_tot, [], chemins_critiques)
-    with open("traces.txt", "a") as f:
+    with open("E3_traces.txt", "a") as f:
         f.write("\n\n\n VI. Chemin(s) critique(s):\n\n")
         print("\n\n VI. Chemin(s) critique(s):\n")
 

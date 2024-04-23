@@ -1,6 +1,6 @@
 from E3_fonction import *
 
-with open("traces.txt", "w") as f:
+with open("E3_traces.txt", "w") as f:
     f.write("")
 
 while True:
@@ -13,7 +13,7 @@ while True:
     if choix == "1":
         num_graphe = int(input("Entrer le n° de tableau de contrainte à tester (entre 1 et 14) : "))
         if 1 <= num_graphe <= 14:
-            with open("traces.txt", "a") as f:
+            with open("E3_traces.txt", "a") as f:
                 decoration_affichage(f"Calculs sur le graphe {num_graphe}: \n")
                 f.write("\n" + f"#" * 50 + "\n")
                 f.write(f"\nCalculs sur le graphe {num_graphe}: \n")
